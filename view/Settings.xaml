@@ -1,0 +1,56 @@
+﻿<UserControl x:Class="ProjectMvvm.view.Settings"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="860" d:DesignWidth="1000">
+
+    <Grid Background="White" Height="808" VerticalAlignment="Top">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock HorizontalAlignment="Left" Margin="55,10,0,0" TextWrapping="Wrap" Text="Main" VerticalAlignment="Top" FontSize="24" FontFamily="Segoe WP"/>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="61,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24"><Run Language="nl-be" Text="Tickets"/></TextBlock>
+        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="63,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24"><Run Language="nl-be" Text="Contacts"/></TextBlock>
+        <TextBlock Grid.Column="3" HorizontalAlignment="Left" Margin="71,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24"><Run Language="nl-be" Text="Stages"/></TextBlock>
+        <Rectangle HorizontalAlignment="Left" Height="762" Margin="10,44,0,0" VerticalAlignment="Top" Width="224" Fill="#FFF3F3F3"/>
+        <Rectangle HorizontalAlignment="Left" Height="762" Margin="10,44,0,0" VerticalAlignment="Top" Width="224" Fill="#FFF3F3F3" Grid.Column="1"/>
+        <Rectangle HorizontalAlignment="Left" Height="762" Margin="10,44,0,0" VerticalAlignment="Top" Width="224" Fill="#FFF3F3F3" Grid.Column="2"/>
+        <Rectangle HorizontalAlignment="Left" Height="762" Margin="10,44,0,0" VerticalAlignment="Top" Width="224" Fill="#FFF3F3F3" Grid.Column="3"/>
+        <TextBlock HorizontalAlignment="Left" Margin="30,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="Festival Titel"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="30,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="184"/>
+        <DatePicker HorizontalAlignment="Left" Margin="30,143,0,0" VerticalAlignment="Top"/>
+        <DatePicker HorizontalAlignment="Left" Margin="30,211,0,0" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="30,122,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="nl-be" Text="Start Date"/><LineBreak/><Run Language="nl-be"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="30,190,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="nl-be" Text="End Date"/><LineBreak/><Run Language="nl-be"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="28,304,0,0" TextWrapping="Wrap" Text="Genre's (seperated by comma)" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="79" Margin="28,325,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
+        <ComboBox Grid.Column="1" HorizontalAlignment="Left" Margin="13,82,0,0" VerticalAlignment="Top" Width="221"/>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="13,60,0,0" TextWrapping="Wrap" Text="Typ of Ticket:" VerticalAlignment="Top"/>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="13,201,0,0" TextWrapping="Wrap" Text="Price:" VerticalAlignment="Top"/>
+        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="61,201,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="72"/>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="13,240,0,0" TextWrapping="Wrap" Text="No available:" VerticalAlignment="Top"/>
+        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="114,240,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="82"/>
+        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="22,146,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="196" />
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="13,122,0,0" TextWrapping="Wrap" Text="Name:" VerticalAlignment="Top"/>
+        <Button Content="Edit" Grid.Column="1" HorizontalAlignment="Left" Margin="22,315,0,0" VerticalAlignment="Top" Width="90"/>
+        <Button Content="Save" Grid.Column="1" HorizontalAlignment="Left" Margin="128,315,0,0" VerticalAlignment="Top" Width="90"/>
+        <Button Content="Remove" Grid.Column="1" HorizontalAlignment="Left" Margin="22,359,0,0" VerticalAlignment="Top" Width="90" />
+        <Button Content="New" Grid.Column="1" HorizontalAlignment="Left" Margin="128,359,0,0" VerticalAlignment="Top" Width="90"/>
+        <ComboBox Grid.Column="3" HorizontalAlignment="Left" Margin="13,82,0,0" VerticalAlignment="Top" Width="221"/>
+        <TextBlock Grid.Column="3" HorizontalAlignment="Left" Margin="13,60,0,0" TextWrapping="Wrap" Text="Typ of Stage:" VerticalAlignment="Top"/>
+        <TextBox Grid.Column="3" HorizontalAlignment="Left" Height="23" Margin="22,146,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="196" />
+        <TextBlock Grid.Column="3" HorizontalAlignment="Left" Margin="13,122,0,0" TextWrapping="Wrap" Text="Name:" VerticalAlignment="Top"/>
+        <Button Content="Edit" Grid.Column="3" HorizontalAlignment="Left" Margin="22,315,0,0" VerticalAlignment="Top" Width="90"/>
+        <Button Content="Save" Grid.Column="3" HorizontalAlignment="Left" Margin="128,315,0,0" VerticalAlignment="Top" Width="90"/>
+        <Button Content="Remove" Grid.Column="3" HorizontalAlignment="Left" Margin="22,359,0,0" VerticalAlignment="Top" Width="90" />
+        <Button Content="New" Grid.Column="3" HorizontalAlignment="Left" Margin="128,359,0,0" VerticalAlignment="Top" Width="90"/>
+        <TextBlock HorizontalAlignment="Left" Grid.Column="3" Margin="13,190,0,0" TextWrapping="Wrap" Text="Genre's (seperated by comma)" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Grid.Column="3" Height="79" Margin="22,211,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
+    </Grid>
+
+</UserControl>

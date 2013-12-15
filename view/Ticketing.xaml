@@ -1,0 +1,20 @@
+﻿<Window x:Class="ProjectMvvm.view.Ticketing"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Ticketing" Height="407" Width="572">
+    <Grid>
+        <Rectangle Fill="#FFF3F3F3" HorizontalAlignment="Left" Height="337" Margin="3,25,0,0" VerticalAlignment="Top" Width="228"/>
+        <ComboBox HorizontalAlignment="Left" Margin="10,62,0,0" VerticalAlignment="Top" Width="190"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="nl-be" Text="No of tickets"/></TextBlock>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="10,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="38"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,161,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="nl-be" Text="Total price: "/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="10,201,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="nl-be" Text="Name:"/></TextBlock>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="10,222,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="190"/>
+        <ListBox HorizontalAlignment="Left" Height="307" Margin="257,59,0,0" VerticalAlignment="Top" Width="297"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,29,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="nl-be" Text="Type of ticket"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="257,29,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="nl-be" Text="History"/></TextBlock>
+        <Button Content="Save" HorizontalAlignment="Left" Margin="10,332,0,0" VerticalAlignment="Top" Width="75" />
+        <Button Content="Edit" HorizontalAlignment="Left" Margin="125,332,0,0" VerticalAlignment="Top" Width="75"/>
+
+    </Grid>
+</Window>
