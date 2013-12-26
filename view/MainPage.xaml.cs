@@ -12,6 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ProjectMvvm.models;
+using project.models;
+
+
 
 namespace ProjectMvvm.view
 {
@@ -23,7 +27,12 @@ namespace ProjectMvvm.view
         public MainPage()
         {
             InitializeComponent();
+            TicketType type = new TicketType();
+            
+            
+
         }
+
 
       
     }

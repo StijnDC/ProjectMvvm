@@ -51,6 +51,9 @@
         <Button Content="New" Grid.Column="3" HorizontalAlignment="Left" Margin="128,359,0,0" VerticalAlignment="Top" Width="90"/>
         <TextBlock HorizontalAlignment="Left" Grid.Column="3" Margin="13,190,0,0" TextWrapping="Wrap" Text="Genre's (seperated by comma)" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Left" Grid.Column="3" Height="79" Margin="22,211,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
+        <Rectangle Grid.Column="2" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="136" Margin="63,60,0,0" Stroke="Black" VerticalAlignment="Top" Width="136"/>
+        <TextBox Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="20,233,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="196" />
+        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="20,201,0,0" TextWrapping="Wrap" Text="Name:" VerticalAlignment="Top"/>
     </Grid>
 
 </UserControl>

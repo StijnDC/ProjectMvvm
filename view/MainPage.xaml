@@ -5,23 +5,35 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="900" d:DesignWidth="1000">
+
+
     <Grid Background="White">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-        <Button   HorizontalAlignment="Left" Margin="35,45,0,0" VerticalAlignment="Top" Width="204" Height="337" Command="{Binding OpenFormCommand}" CommandParameter="1" >
+        <Button   HorizontalAlignment="Left" Margin="53,45,0,0" VerticalAlignment="Top" Width="204" Height="335" Command="{Binding OpenFormCommand}" CommandParameter="1" BorderThickness="0"  >
 
-            <Image Source="Assets\contacts.png"></Image>
-            
+
+            <Image Source="Assets\contacts.png" Cursor="Hand">
+
+
+            </Image>
+
         </Button>
 
 
         <Button Content="Line-up" HorizontalAlignment="Left" Margin="61,45,0,0" VerticalAlignment="Top" Width="204" Height="337" Grid.Column="1" Command="{Binding OpenFormCommand}" CommandParameter="2"/>
         <Button Content="Contact" HorizontalAlignment="Left" Margin="40,45,0,0" VerticalAlignment="Top" Width="204" Height="337" Grid.Column="2" Command="{Binding OpenFormCommand}" CommandParameter="3"/>
         <TextBlock HorizontalAlignment="Left" Margin="77,468,0,0" TextWrapping="Wrap" Text="Ticket Counter" VerticalAlignment="Top"/>
-        <ListBox HorizontalAlignment="Left" Height="317" Margin="39,489,0,0" VerticalAlignment="Top" Width="204" Background="#FFC9C0C0" Foreground="#FF7E6E6E"  />
         <Rectangle HorizontalAlignment="Left" Height="317" Margin="0,489,0,0" Stroke="Black" VerticalAlignment="Top" Width="641" Grid.ColumnSpan="2" Grid.Column="1"/>
+        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Tickets}" Margin="10,489,31,94">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="Amount left" Binding="{Binding AvailableTickets}" />
+               
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>
