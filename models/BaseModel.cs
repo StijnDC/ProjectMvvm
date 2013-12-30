@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace project.models
+namespace ProjectMvvm.models
 {
     public class BaseModel : INotifyPropertyChanged
     {

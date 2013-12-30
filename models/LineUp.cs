@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace project.models
+namespace ProjectMvvm.models
 {
     class LineUp
     {
@@ -36,6 +36,7 @@ namespace project.models
             get { return _Until; }
             set { _Until = value; }
         }
+
         private Stage _Stage;
 
         public Stage Stage

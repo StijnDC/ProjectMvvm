@@ -6,11 +6,13 @@ using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using project.models;
+using ProjectMvvm.models;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 
 
-namespace project.models
+namespace ProjectMvvm.models
 {
     class TicketType : BaseModel
 
@@ -30,6 +32,9 @@ namespace project.models
             get { return _Name; }
             set { _Name = value; }
         }
+
+        [Required]
+        [Range(0.0, Double.MaxValue)]
         private double _Price;
 
         public double Price
@@ -38,7 +43,8 @@ namespace project.models
             get { return _Price; }
             set { _Price = value; }
         }
-
+        [Required]
+        [Range(0, Int32.MaxValue)]
         private int _AvailableTickets;
 
         public int AvailableTickets
@@ -78,7 +84,33 @@ namespace project.models
         return ticketTypes;
 
         }
-       
+
+
+
+        public static TicketType GetTicketTypeByID(String TicketTypeID)
+        {
+            ObservableCollection<TicketType> TicketID = TicketType.GetTicketTypes();
+            return TicketID.Where(tt => tt._ID == TicketTypeID).SingleOrDefault();
+        }
+
+        public static TicketType GetTicketByName(String TicketName)
+        {
+            ObservableCollection<TicketType> TicketNames = TicketType.GetTicketTypes();
+            return TicketNames.Where(tt => tt._Name == TicketName).SingleOrDefault();
+        }
+
+        public static void UpdateTicketType(TicketType ticketType)
+        {
+            String sSQL = "UPDATE TicketType SET Name = @Name, Price = @Price, AvailableTickets = @AvailableTickets WHERE ID = @ID";
+
+            DbParameter par1 = Database.AddParameter("@Name", ticketType._Name);
+            DbParameter par2 = Database.AddParameter("@Price", Convert.ToDouble(ticketType._Price));
+            DbParameter par3 = Database.AddParameter("@AvailableTickets", Convert.ToInt32(ticketType._AvailableTickets));
+            DbParameter par4 = Database.AddParameter("@ID", ticketType._ID);
+
+            Database.ModifyData(sSQL, par1, par2, par3, par4);
+        }
+
 
     }
 }

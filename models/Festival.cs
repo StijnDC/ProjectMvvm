@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 
-namespace project
+namespace ProjectMvvm.models
 {
     class Festival
     {
@@ -28,16 +28,6 @@ namespace project
         }
 
 
-        public static ObservableCollection<Festival> getData()
-        {
-            ObservableCollection<Festival> Festival = new ObservableCollection<Festival>();
-            XmlDocument doc = new XmlDocument();
-            doc.Load(".xml");
-
-            XmlNodeList elemList = doc.GetElementsByTagName("company");
-
-            return null;
-
-        }
+ 
     }
 }

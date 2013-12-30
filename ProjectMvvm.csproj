@@ -46,6 +46,8 @@
       <HintPath>C:\Program Files (x86)\Laurent Bugnion (GalaSoft)\Mvvm Light Toolkit\Binaries\WPF45\GalaSoft.MvvmLight.WPF45.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
@@ -70,11 +72,6 @@
     <Compile Include="models\BaseModel.cs" />
     <Compile Include="models\ContactPeronType.cs" />
     <Compile Include="models\ContactPerson.cs" />
-    <Compile Include="models\DAL\BandRepository.cs" />
-    <Compile Include="models\DAL\ContactPersonRepository.cs" />
-    <Compile Include="models\DAL\LineUpRepository.cs" />
-    <Compile Include="models\DAL\TicketRepository.cs" />
-    <Compile Include="models\DAL\TicketTypeRepository.cs" />
     <Compile Include="models\Festival.cs" />
     <Compile Include="models\Genre.cs" />
     <Compile Include="models\LineUp.cs" />
