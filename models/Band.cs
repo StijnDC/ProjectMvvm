@@ -65,29 +65,55 @@ namespace ProjectMvvm.models
         }
 
 
+        public static ObservableCollection<Band> GetBands()
+        {
+            ObservableCollection<Band> list = new ObservableCollection<Band>();
+
+            String sSQL = "SELECT * FROM Band";
+            DbDataReader reader = Database.GetData(sSQL);
+
+            while (reader.Read())
+            {
+                Band b = new Band();
+
+                string ID = (string)reader["ID"];
+                b.ID = ID;
+              // !Convert.IsDBNull((DateTime)reader["Date"]) ? (DateTime)reader["Date"] : today;
+
+                b.Name = !Convert.IsDBNull((string)reader["Name"]) ? (string)reader["Name"] : "";
+                b.Picture = !Convert.IsDBNull((string)reader["Picture"]) ? (string)reader["Picture"] : null;
+                b.Description = !Convert.IsDBNull((string)reader["Description"]) ? (string)reader["Description"] : "";
+                b.Twitter = !Convert.IsDBNull((string)reader["Twitter"]) ? (string)reader["Twitter"] : "";
+                b.Facebook = !Convert.IsDBNull((string)reader["Facebook"]) ? (string)reader["Facebook"] : "";
+                b.Genres = GetAllGenresFromBand(ID);
+                list.Add(b);
+            }
+            return list;
+        }
+
         private static ObservableCollection<Genre> GetAllGenresFromBand(String BandID)
         {
             ObservableCollection<Genre> lijst = new ObservableCollection<Genre>();
             ObservableCollection<Genre> genres = Genre.GetGenres();
 
-            String sSQL = "SELECT * FROM BandGenre WHERE ID = @ID";
+            String sSQL = "SELECT * FROM Genre WHERE ID = @ID";
             DbParameter par1 = Database.AddParameter("@ID", BandID);
             DbDataReader reader = Database.GetData(sSQL, par1);
 
             while (reader.Read())
             {
-                Genre aNieuw = new Genre();
+                Genre genre= new Genre();
 
-                foreach (Genre genre in genres)
+                foreach (Genre gen in genres)
                 {
-                    if (genre.ID == reader["Genres"].ToString())
+                    if (genre.ID == reader["Genre"].ToString())
                     {
-                        aNieuw.ID = genre.ID;
-                        aNieuw.Name = genre.Name;
+                        gen.ID = genre.ID;
+                        gen.Name = genre.Name;
                     }
                 }
 
-                lijst.Add(aNieuw);
+                lijst.Add(genre);
             }
             return lijst;
         }
@@ -136,13 +162,13 @@ namespace ProjectMvvm.models
         {
             foreach (Genre g in lijst)
             {
-                String sSQL = "INSERT INTO BandGenre (ID, Genres) VALUES (@BandID,  @GenreID)";
+                String sSQL = "INSERT INTO Genre (ID, Genres) VALUES (@BandID,  @GenreID)";
 
-                DbParameter par1 = Database.AddParameter("@BandID", b._ID);
+                DbParameter par1 = Database.AddParameter("@BandID", b.ID);
                 DbParameter par2 = Database.AddParameter("@GenreID", g.ID);
 
                 Database.ModifyData(sSQL, par1, par2);
-            }
+            }   
         }
 
         public override string ToString()

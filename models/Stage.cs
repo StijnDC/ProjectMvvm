@@ -30,19 +30,20 @@ namespace ProjectMvvm.models
         //Ophalen uit de database
         public static ObservableCollection<Stage> GetStages()
         {
-            ObservableCollection<Stage> lijst = new ObservableCollection<Stage>();
+            ObservableCollection<Stage> list = new ObservableCollection<Stage>();
 
             String sSQL = "SELECT * FROM Stage";
 
             DbDataReader reader = Database.GetData(sSQL);
             while (reader.Read())
             {
-                Stage aNieuw = new Stage();
-                aNieuw._ID = reader["ID"].ToString();
-                aNieuw._Name = reader["Name"].ToString();
-                lijst.Add(aNieuw);
+                Stage s = new Stage();
+                string ID = (string)reader["ID"];
+                s.ID = ID;
+                s.Name = !Convert.IsDBNull((string)reader["Name"]) ? (string)reader["Name"] : "";        
+                     list.Add(s);
             }
-            return lijst;
+            return list;
         }
 
         //Stage toevoegen aan database
