@@ -70,7 +70,7 @@
     </ApplicationDefinition>
     <Compile Include="models\Band.cs" />
     <Compile Include="models\BaseModel.cs" />
-    <Compile Include="models\ContactPeronType.cs" />
+    <Compile Include="models\ContactPersonType.cs" />
     <Compile Include="models\ContactPerson.cs" />
     <Compile Include="models\Festival.cs" />
     <Compile Include="models\Genre.cs" />

@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-//////////////nog niet klaar
 namespace ProjectMvvm.models
 {
     class ContactPersonType
@@ -33,7 +32,7 @@ namespace ProjectMvvm.models
         //Alle contacttypes ophalen uit de database 
         public static ObservableCollection<ContactPersonType> GetTypes()
         {
-            ObservableCollection<ContactPersonType> lijst = new ObservableCollection<ContactPersonType>();
+            ObservableCollection<ContactPersonType> list = new ObservableCollection<ContactPersonType>();
 
             String sSQL = "SELECT * FROM ContactPersonType";
             DbDataReader reader = Database.GetData(sSQL);
@@ -43,13 +42,14 @@ namespace ProjectMvvm.models
                 ContactPersonType ct = new ContactPersonType();
 
                 /// herwerken!!!!!!!!!!!!!!!!!!!!!!!!!!
+                /// 
+                string ID = (string)reader["ID"];
+                ct.ID = ID;
+                ct.Name = !Convert.IsDBNull((string)reader["Name"]) ? (string)reader["Name"] : "";
 
-                ct._ID = reader["ContactPersonTypeID"].ToString();
-                ct._Name = reader["Name"].ToString();
-
-                lijst.Add(ct);
+                 list.Add(ct);
             }
-            return lijst;
+            return list;
         }
 
         public static ContactPersonType GetJobeRoleByID(String JobRoleID)
@@ -80,9 +80,9 @@ namespace ProjectMvvm.models
         }
 
         //Update in de database 
-        public static void UpdateContactpersonType(ContactpersonType ct)
+        public static void UpdateContactpersonType(ContactPersonType ct)
         {
-            String sSQL = "UPDATE ContactPersonType SET Name = @Name WHERE ContactPersonTypeID = @ID";
+            String sSQL = "UPDATE ContactPersonType SET Name = @Name WHERE ID = @ID";
 
             DbParameter par1 = Database.AddParameter("@Name", ct._Name);
             DbParameter par2 = Database.AddParameter("@ID", ct._ID);

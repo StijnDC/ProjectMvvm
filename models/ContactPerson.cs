@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-///////////nog niet klaar
 namespace ProjectMvvm.models
 {
     class ContactPerson
@@ -77,7 +76,7 @@ namespace ProjectMvvm.models
         //Ophalen uit de database
         public static ObservableCollection<ContactPerson> GetContactPersons()
         {
-            ObservableCollection<ContactPerson> lijst = new ObservableCollection<ContactPerson>();
+            ObservableCollection<ContactPerson> list = new ObservableCollection<ContactPerson>();
 
             String sSQL = "SELECT * FROM ContactPerson";
             DbDataReader reader = Database.GetData(sSQL);
@@ -86,103 +85,91 @@ namespace ProjectMvvm.models
             {
                 ContactPerson c = new ContactPerson();
 
-                c._ID = reader["ContactPersonID"].ToString();
-                c._Name = reader["Name"].ToString();
-                c._Company = reader["Company"].ToString();
-                c._JobRole = ContactpersonType.GetJobeRoleByID(reader["JobRoleID"].ToString());
-                c._City = reader["City"].ToString();
-                c._Email = reader["Email"].ToString();
-                c._Phone = reader["Phone"].ToString();
-                c._Cellphone = reader["Cellphone"].ToString();
 
-                lijst.Add(c);
+                string ID = (string)reader["ID"];
+                c.ID = ID;
+                c.Name = !Convert.IsDBNull((string)reader["Name"]) ? (string)reader["Name"] : "";
+                c.Company = !Convert.IsDBNull((string)reader["Company"]) ? (string)reader["Company"] : "";
+                c.JobRole = ContactPersonType.GetJobeRoleByID(reader["JobRoleID"].ToString());
+
+                c.City = !Convert.IsDBNull((string)reader["City"]) ? (string)reader["City"] : "";
+                c.Email = !Convert.IsDBNull((string)reader["EMail"]) ? (string)reader["EMail"] : "";
+                c.Phone = !Convert.IsDBNull((string)reader["Phone"]) ? (string)reader["Phone"] : "";
+                c.Cellphone = !Convert.IsDBNull((string)reader["CellPhone"]) ? (string)reader["CellPhone"] : "";
+                
+
+                list.Add(c);
             }
-            return lijst;
+            return list;
         }
 
         //Filteren op een JobRole
         public static ObservableCollection<ContactPerson> FilterContactpersons(String ID)
         {
-            ObservableCollection<ContactPerson> lijst = new ObservableCollection<ContactPerson>();
+            ObservableCollection<ContactPerson> list = new ObservableCollection<ContactPerson>();
 
-            String sSQL = "SELECT * FROM ContactPerson WHERE JobRoleID = @JobRoleID";
-            DbParameter par1 = Database.AddParameter("@JobRoleID", Convert.ToInt32(ID));
+            String sSQL = "SELECT * FROM ContactPerson WHERE JobRole = @JobRole";
+            DbParameter par1 = Database.AddParameter("@JobRole", Convert.ToInt32(ID));
             DbDataReader reader = Database.GetData(sSQL, par1);
 
             while (reader.Read())
             {
                 ContactPerson c = new ContactPerson();
 
-                c._ID = reader["ContactPersonID"].ToString();
-                c._Name = reader["Name"].ToString();
+                string id = (string)reader["ID"];
+                c.ID = id;
+                c.Name = !Convert.IsDBNull((string)reader["Name"]) ? (string)reader["Name"] : "";
+                c.Company = !Convert.IsDBNull((string)reader["Company"]) ? (string)reader["Company"] : "";
+                c._JobRole = ContactPersonType.GetJobeRoleByID(reader["JobRole"].ToString());
 
-                if (!DBNull.Value.Equals(reader["Company"]))
-                    c._Company = reader["Company"].ToString();
-                else
-                    c._Company = null;
+                c.City = !Convert.IsDBNull((string)reader["City"]) ? (string)reader["City"] : "";
+                c.Email = !Convert.IsDBNull((string)reader["EMail"]) ? (string)reader["EMail"] : "";
+                c.Phone = !Convert.IsDBNull((string)reader["Phone"]) ? (string)reader["Phone"] : "";
+                c.Cellphone = !Convert.IsDBNull((string)reader["CellPhone"]) ? (string)reader["CellPhone"] : "";
 
-                c._JobRole = ContactpersonType.GetJobeRoleByID(reader["JobRoleID"].ToString());
+               
 
-                if (!DBNull.Value.Equals(reader["City"]))
-                    c._City = reader["City"].ToString();
-                else
-                    c._City = null;
 
-                if (!DBNull.Value.Equals(reader["Email"]))
-                    c._Email = reader["Email"].ToString();
-                else
-                    c._City = null;
-
-                if (!DBNull.Value.Equals(reader["Phone"]))
-                    c._Phone = reader["Phone"].ToString();
-                else
-                    c._Phone = null;
-
-                if (!DBNull.Value.Equals(reader["Cellphone"]))
-                    c._Cellphone = reader["Cellphone"].ToString();
-                else
-                    c._Cellphone = null;
-
-                lijst.Add(c);
+                list.Add(c);
             }
-            return lijst;
+            return list;
         }
 
         //Insert in de database
-        public static void InsertContactperson(Contactperson c)
+        public static void InsertContactperson(ContactPerson c)
         {
-            String sSQL = "INSERT INTO ContactPerson (Name, Company, JobRoleID, City, Email, Phone, Cellphone) VALUES (@Name, @Company, @JobRoleID, @City, @Email, @Phone, @Cellphone)";
+            String sSQL = "INSERT INTO ContactPerson (Name, Company, JobRole, City, EMail, Phone, CellPhone) VALUES (@Name, @Company, @JobRole, @City, @Email, @Phone, @Cellphone)";
 
             DbParameter par1 = Database.AddParameter("@Name", c._Name);
             DbParameter par2 = Database.AddParameter("@Company", c._Company);
-            DbParameter par3 = Database.AddParameter("@JobRoleID", Convert.ToInt32(c._JobRole.ID));
+            DbParameter par3 = Database.AddParameter("@JobRole", Convert.ToInt32(c.JobRole.ID));
             DbParameter par4 = Database.AddParameter("@City", c._City);
             DbParameter par5 = Database.AddParameter("@Email", c._Email);
             DbParameter par6 = Database.AddParameter("@Phone", c._Phone);
-            DbParameter par7 = Database.AddParameter("@Cellphone", c._Cellphone);
+            DbParameter par7 = Database.AddParameter("@Cellphone", c._CellPhone);
 
             Database.ModifyData(sSQL, par1, par2, par3, par4, par5, par6, par7);
         }
 
         //Update in de database 
-        public static void UpdateContactperson(Contactperson c)
+        public static void UpdateContactperson(ContactPerson c)
         {
-            String sSQL = "UPDATE ContactPerson SET Name = @Name, Company = @Company, JobRoleID = @JobRoleID, City = @City, Email = @Email, Phone = @Phone, Cellphone = @Cellphone WHERE ContactPersonID = @ID";
+            String sSQL = "UPDATE ContactPerson SET Name = @Name, Company = @Company, JobRole = @JobRole, City = @City, EMail = @Email, Phone = @Phone, CellPhone = @Cellphone WHERE ID = @ID";
 
             DbParameter par1 = Database.AddParameter("@Name", c._Name);
             DbParameter par2 = Database.AddParameter("@Company", c._Company);
-            DbParameter par3 = Database.AddParameter("@JobRoleID", Convert.ToInt32(c._JobRole.ID));
+            DbParameter par3 = Database.AddParameter("@JobRole", Convert.ToInt32(c._JobRole.ID));
             DbParameter par4 = Database.AddParameter("@City", c._City);
             DbParameter par5 = Database.AddParameter("@Email", c._Email);
             DbParameter par6 = Database.AddParameter("@Phone", c._Phone);
-            DbParameter par7 = Database.AddParameter("@Cellphone", c._Cellphone);
+            DbParameter par7 = Database.AddParameter("@Cellphone", c._CellPhone);
             DbParameter par8 = Database.AddParameter("@ID", c._ID);
 
             Database.ModifyData(sSQL, par1, par2, par3, par4, par5, par6, par7, par8);
         }
 
         //Delete in de database 
-        public static void DeleteContactperson(Contactperson c)
+        public static void DeleteContactperson(ContactPerson c)
         {
             String sSQL = "DELETE FROM ContactPerson WHERE Name = @Name";
 
