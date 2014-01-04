@@ -27,7 +27,7 @@ namespace ProjectMvvm.view
         public MainPage()
         {
             InitializeComponent();
-            TicketType type = new TicketType();
+            
             
             
 

@@ -53,6 +53,7 @@ namespace ProjectMvvm.models
             set { _AvailableTickets = value; }
         }
 
+       
         private ObservableCollection<TicketType> _TicketTypes;
 
         public ObservableCollection<TicketType> TicketTypes {
@@ -62,7 +63,7 @@ namespace ProjectMvvm.models
 
         
         }
-
+        //tickettypes ophalen
         public static ObservableCollection<TicketType> GetTicketTypes() {
             ObservableCollection<TicketType> ticketTypes = new ObservableCollection<TicketType>();
 
@@ -72,10 +73,10 @@ namespace ProjectMvvm.models
             TicketType t = new TicketType();
 
             
-            string ID = (string)reader["ID"];
-            t._ID = ID;
+            int ID = (int)reader["ID"];
+            t._ID = Convert.ToString(ID);
             t.Name = !Convert.IsDBNull((string)reader["Name"]) ? (string)reader["Name"] : "";
-            t.Price = !Convert.IsDBNull((int)reader["Price"]) ? (int)reader["Price"] : 0;
+            t.Price = Convert.ToInt32(!Convert.IsDBNull((decimal)reader["Price"]) ? (decimal)reader["Price"] : 0);
             t.AvailableTickets = !Convert.IsDBNull((int)reader["AvailableTickets"]) ? (int)reader["AvailableTickets"] : 0;
 
             ticketTypes.Add(t);
@@ -99,6 +100,8 @@ namespace ProjectMvvm.models
             return TicketNames.Where(tt => tt._Name == TicketName).SingleOrDefault();
         }
 
+
+        //update database
         public static void UpdateTicketType(TicketType ticketType)
         {
             String sSQL = "UPDATE TicketType SET Name = @Name, Price = @Price, AvailableTickets = @AvailableTickets WHERE ID = @ID";
@@ -112,5 +115,19 @@ namespace ProjectMvvm.models
         }
 
 
+        //insert database
+        public static void InsertTicketType(TicketType ticketType) { 
+        string sSQL = "INSERT INTO TicketType (Name, Price, AvailableTickets) VALUES (@Name, @Price, @AvailableTickets)";
+        DbParameter par1 = Database.AddParameter("@Name", ticketType._Name);
+        DbParameter par2 = Database.AddParameter("@Price", ticketType.Price);
+        DbParameter par3 = Database.AddParameter("@AvailableTickets", ticketType.AvailableTickets);
+
+        Database.ModifyData(sSQL, par1, par2, par3);
+
+
+
+
+        
+        }
     }
 }

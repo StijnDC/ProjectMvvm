@@ -20,10 +20,26 @@ namespace ProjectMvvm.view
     /// </summary>
     public partial class Settings : UserControl
     {
+
+        //controls aanpassens
         public Settings()
         {
             InitializeComponent();
+            txtAvailable.IsEnabled = false;
+            txtName.IsEnabled = false;
+            txtPrice.IsEnabled = false;
+
         }
+
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        {
+            //controls aanzetten voor editing
+            txtAvailable.IsEnabled = true;
+            txtName.IsEnabled = true;
+            txtPrice.IsEnabled = true;
+        }
+
+
 
 
 

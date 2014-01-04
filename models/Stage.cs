@@ -38,8 +38,8 @@ namespace ProjectMvvm.models
             while (reader.Read())
             {
                 Stage s = new Stage();
-                string ID = (string)reader["ID"];
-                s.ID = ID;
+                int ID = (int)reader["ID"];
+                s.ID = Convert.ToString(ID);
                 s.Name = !Convert.IsDBNull((string)reader["Name"]) ? (string)reader["Name"] : "";        
                      list.Add(s);
             }

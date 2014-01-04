@@ -78,19 +78,21 @@ namespace ProjectMvvm.models
         {
             ObservableCollection<ContactPerson> list = new ObservableCollection<ContactPerson>();
 
-            String sSQL = "SELECT * FROM ContactPerson";
+            String sSQL = "SELECT * FROM [ContactPerson]";
             DbDataReader reader = Database.GetData(sSQL);
+
+
 
             while (reader.Read())
             {
                 ContactPerson c = new ContactPerson();
 
 
-                string ID = (string)reader["ID"];
-                c.ID = ID;
+                int ID = (int)reader["ID"];
+                c.ID = Convert.ToString(ID);
                 c.Name = !Convert.IsDBNull((string)reader["Name"]) ? (string)reader["Name"] : "";
                 c.Company = !Convert.IsDBNull((string)reader["Company"]) ? (string)reader["Company"] : "";
-                c.JobRole = ContactPersonType.GetJobeRoleByID(reader["JobRoleID"].ToString());
+                c.JobRole = ContactPersonType.GetJobeRoleByID(Convert.ToString(reader["JobRole"]));
 
                 c.City = !Convert.IsDBNull((string)reader["City"]) ? (string)reader["City"] : "";
                 c.Email = !Convert.IsDBNull((string)reader["EMail"]) ? (string)reader["EMail"] : "";
@@ -116,8 +118,8 @@ namespace ProjectMvvm.models
             {
                 ContactPerson c = new ContactPerson();
 
-                string id = (string)reader["ID"];
-                c.ID = id;
+                int id = (int)reader["ID"];
+                c.ID = Convert.ToString(id);
                 c.Name = !Convert.IsDBNull((string)reader["Name"]) ? (string)reader["Name"] : "";
                 c.Company = !Convert.IsDBNull((string)reader["Company"]) ? (string)reader["Company"] : "";
                 c._JobRole = ContactPersonType.GetJobeRoleByID(reader["JobRole"].ToString());

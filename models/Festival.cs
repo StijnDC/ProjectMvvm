@@ -42,6 +42,8 @@ namespace ProjectMvvm.models
             }
         }
 
+
+        //festival datum + naam ophalen uit database
         public static Festival GetFestival()
         {
             Festival festival = new Festival();
@@ -64,7 +66,7 @@ namespace ProjectMvvm.models
             return festival;
         }
 
-        //Festivaleigenschappen aanpassen
+        //Festival datum + naam updaten 
         public static void SaveFestival(Festival editFestival)
         {
             String sSQL = "UPDATE Festival SET FestivalName = @Name, StartDate = @StartDate, EndDate = @EndDate";

@@ -27,17 +27,20 @@
         <DatePicker HorizontalAlignment="Left" Margin="30,211,0,0" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="30,122,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="nl-be" Text="Start Date"/><LineBreak/><Run Language="nl-be"/></TextBlock>
         <TextBlock HorizontalAlignment="Left" Margin="30,190,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="nl-be" Text="End Date"/><LineBreak/><Run Language="nl-be"/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="28,304,0,0" TextWrapping="Wrap" Text="Genre's (seperated by comma)" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="79" Margin="28,325,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
-        <ComboBox Grid.Column="1" HorizontalAlignment="Left" Margin="13,82,0,0" VerticalAlignment="Top" Width="221"/>
+        <ComboBox Grid.Column="1" HorizontalAlignment="Left" Margin="13,82,0,0" VerticalAlignment="Top" Width="221" ItemsSource="{Binding TicketTypes, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedTicketType, UpdateSourceTrigger=PropertyChanged}"/>
         <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="13,60,0,0" TextWrapping="Wrap" Text="Typ of Ticket:" VerticalAlignment="Top"/>
         <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="13,201,0,0" TextWrapping="Wrap" Text="Price:" VerticalAlignment="Top"/>
-        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="61,201,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="72"/>
+        <TextBox x:Name="txtPrice" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="61,201,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="72"
+                 Text="{Binding SelectedTicketType.Price, UpdateSourceTrigger=PropertyChanged}"/>
         <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="13,240,0,0" TextWrapping="Wrap" Text="No available:" VerticalAlignment="Top"/>
-        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="114,240,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="82"/>
-        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="22,146,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="196" />
+        <TextBox x:Name="txtAvailable" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="114,240,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="82"
+                 Text="{Binding SelectedTicketType.AvailableTickets, UpdateSourceTrigger=PropertyChanged}"
+                 />
+        <TextBox x:Name="txtName" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="22,146,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="196"
+                 Text="{Binding SelectedTicketType.Name, UpdateSourceTrigger=PropertyChanged}"
+                 />
         <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="13,122,0,0" TextWrapping="Wrap" Text="Name:" VerticalAlignment="Top"/>
-        <Button Content="Edit" Grid.Column="1" HorizontalAlignment="Left" Margin="22,315,0,0" VerticalAlignment="Top" Width="90"/>
+        <Button x:Name="btnEdit" Content="Edit" Grid.Column="1" HorizontalAlignment="Left" Margin="22,315,0,0" VerticalAlignment="Top" Width="90" Click="btnEdit_Click"/>
         <Button Content="Save" Grid.Column="1" HorizontalAlignment="Left" Margin="128,315,0,0" VerticalAlignment="Top" Width="90"/>
         <Button Content="Remove" Grid.Column="1" HorizontalAlignment="Left" Margin="22,359,0,0" VerticalAlignment="Top" Width="90" />
         <Button Content="New" Grid.Column="1" HorizontalAlignment="Left" Margin="128,359,0,0" VerticalAlignment="Top" Width="90"/>
@@ -51,9 +54,6 @@
         <Button Content="New" Grid.Column="3" HorizontalAlignment="Left" Margin="128,359,0,0" VerticalAlignment="Top" Width="90"/>
         <TextBlock HorizontalAlignment="Left" Grid.Column="3" Margin="13,190,0,0" TextWrapping="Wrap" Text="Genre's (seperated by comma)" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Left" Grid.Column="3" Height="79" Margin="22,211,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
-        <Rectangle Grid.Column="2" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="136" Margin="63,60,0,0" Stroke="Black" VerticalAlignment="Top" Width="136"/>
-        <TextBox Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="20,233,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="196" />
-        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="20,201,0,0" TextWrapping="Wrap" Text="Name:" VerticalAlignment="Top"/>
     </Grid>
 
 </UserControl>

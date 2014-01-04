@@ -43,8 +43,8 @@ namespace ProjectMvvm.models
 
                 /// herwerken!!!!!!!!!!!!!!!!!!!!!!!!!!
                 /// 
-                string ID = (string)reader["ID"];
-                ct.ID = ID;
+                int ID = (int)reader["ID"];
+                ct.ID = Convert.ToString(ID);
                 ct.Name = !Convert.IsDBNull((string)reader["Name"]) ? (string)reader["Name"] : "";
 
                  list.Add(ct);
@@ -66,7 +66,7 @@ namespace ProjectMvvm.models
 
         public override string ToString()
         {
-            return this._Name;
+            return this.Name;
         }
 
         //Insert in de database

@@ -1,34 +1,61 @@
 ﻿<Window x:Class="ProjectMvvm.view.Contact"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Contacts" Height="595.125" Width="800.425">
+        xmlns:vm="clr-namespace:ProjectMvvm.viewmodel"
+        xmlns:v="clr-namespace:ProjectMvvm.view"
+        Title="Contacts" Height="377.125" Width="782.425" ResizeMode="NoResize">
+    <Window.DataContext>
+        <vm:ContactVM/>
+    </Window.DataContext>
+
+
+
     <Grid Margin="0,0,2,-5">
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="25,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="217" />
-        <CheckBox Content="Sponser" HorizontalAlignment="Left" Margin="25,157,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.285,-0.388"/>
-        <CheckBox Content="Klank &amp; Licht" HorizontalAlignment="Left" Margin="25,177,0,0" VerticalAlignment="Top" />
-        <CheckBox Content="CheckBox" HorizontalAlignment="Left" Margin="25,197,0,0" VerticalAlignment="Top"/>
-        <CheckBox Content="CheckBox" HorizontalAlignment="Left" Margin="25,217,0,0" VerticalAlignment="Top"/>
-        <CheckBox Content="CheckBox" HorizontalAlignment="Left" Margin="25,237,0,0" VerticalAlignment="Top"/>
-        <ListBox HorizontalAlignment="Left" Height="268" Margin="25,273,0,0" VerticalAlignment="Top" Width="217" />
-        <TextBlock HorizontalAlignment="Left" Margin="348,288,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="63"><Run Language="nl-be" Text="Name:"/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="348,322,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="63"><Run Language="nl-be" Text="Function:"/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="348,353,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="63"><Run Language="nl-be" Text="Adres:"/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="348,383,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="63"><Run Language="nl-be" Text="Adres:"/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="348,412,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="63"><Run Language="nl-be" Text="Tel:"/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="348,442,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="63"><Run Language="nl-be" Text="Mobile:"/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="348,472,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="63"><Run Language="nl-be" Text="E-mail:"/></TextBlock>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="429,288,-73,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="265"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="429,316,-73,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="265"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="429,346,-73,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="265"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="429,376,-73,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="265"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="429,411,-73,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="265"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="429,441,-73,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="265"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="429,471,-73,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="265"/>
-        <Button Content="Edit" HorizontalAlignment="Left" Margin="307,521,0,0" VerticalAlignment="Top" Width="75" />
-        <Button Content="New" HorizontalAlignment="Left" Margin="412,521,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button Content="Delete" HorizontalAlignment="Left" Margin="510,521,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button Content="Save" HorizontalAlignment="Left" Margin="621,521,-75,0" VerticalAlignment="Top" Width="75"/>
-        <TextBlock HorizontalAlignment="Left" Margin="25,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="nl-be" Text="Search:"/></TextBlock>
+        <DataGrid HorizontalAlignment="Left" Height="268" Margin="57,54,0,0" VerticalAlignment="Top" Width="217"
+                  ItemsSource="{Binding Contactpersons, UpdateSourceTrigger=PropertyChanged}"  SelectedItem="{Binding SelectedContactperson, UpdateSourceTrigger=PropertyChanged}"  
+                  AutoGenerateColumns="False"  SelectionChanged="DataGrid_SelectionChanged"
+                  >
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Naam" MinWidth="200">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock  Text="{Binding Name,  UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+
+        </DataGrid>
+        <TextBlock HorizontalAlignment="Left" Margin="380,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="63"><Run Language="nl-be" Text="Name:"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="380,117,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="63"><Run Language="nl-be" Text="Function:"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="380,155,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="63"><Run Language="nl-be" Text="Company"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="382,177,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="63"><Run Language="nl-be" Text="Tel:"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="380,214,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="63"><Run Language="nl-be" Text="Mobile:"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="380,253,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="63"><Run Language="nl-be" Text="E-mail:"/></TextBlock>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="461,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="265" x:Name="txtName"
+                 Text="{Binding SelectedContactperson.Name, UpdateSourceTrigger=PropertyChanged}"
+                 />
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="461,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="265" x:Name="txtJobRole"
+                 Text="{Binding SelectedContactperson.JobRole, UpdateSourceTrigger=PropertyChanged}"
+                 />
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="461,148,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="265" x:Name="txtCompany"
+                  Text="{Binding SelectedContactperson.Company, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="463,177,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="265" x:Name="txtPhone"
+                  Text="{Binding SelectedContactperson.Phone, UpdateSourceTrigger=PropertyChanged}"
+                 />
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="461,213,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="265" x:Name="txtMobile"
+                  Text="{Binding SelectedContactperson.Cellphone, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="461,252,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="265" x:Name="txtEmail"
+                 Text="{Binding SelectedContactperson.Email, UpdateSourceTrigger=PropertyChanged}"/>
+        <Button x:Name="btnEdit" Content="Edit" HorizontalAlignment="Left" Margin="339,302,0,0" VerticalAlignment="Top" Width="75" Click="btnEdit_Click" />
+        <Button x:Name="btnNew" Content="New" HorizontalAlignment="Left" Margin="444,302,0,0" VerticalAlignment="Top" Width="75" Command="{Binding NewContactPersonCommand}"/>
+        <Button x:Name="btnDelete" Content="Delete" HorizontalAlignment="Left" Margin="542,302,0,0" VerticalAlignment="Top" Width="75" Command="{Binding DeleteContactPersonCommand}"/>
+        <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left" Margin="653,302,0,0" VerticalAlignment="Top" Width="75" Command="{Binding SaveContactPersonCommand}"/>
 
     </Grid>
 </Window>

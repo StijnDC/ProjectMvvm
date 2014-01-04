@@ -56,6 +56,7 @@ namespace ProjectMvvm.models
         }
 
 
+        //line up ophalen uit database
         public static ObservableCollection<LineUp> GetLineUp()
         {
             ObservableCollection<LineUp> lineUp = new ObservableCollection<LineUp>();
@@ -69,8 +70,8 @@ namespace ProjectMvvm.models
             {
                 LineUp l = new LineUp();
                 
-                string ID = (string)reader["ID"];
-                l.ID = ID;
+               int ID = (int)reader["ID"];
+                l.ID = Convert.ToString(ID);
                 l.Date = !Convert.IsDBNull((DateTime)reader["Date"]) ? (DateTime)reader["Date"] : today;
                 l.From =!Convert.IsDBNull((string)reader["Van"]) ? (string)reader["Van"] : "";
                 l.Until = !Convert.IsDBNull((string)reader["Until"]) ? (string)reader["Until"] : "";
@@ -84,6 +85,7 @@ namespace ProjectMvvm.models
             return lineUp;
         }
 
+        //stages + bands ophalen uit de lineup
         private static Stage GetStageFromLineUp(string StageID)
         {
             ObservableCollection<Stage> list = Stage.GetStages();

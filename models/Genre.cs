@@ -26,6 +26,8 @@ namespace ProjectMvvm.models
             set { _Name = value; }
         }
 
+
+        //genres ophalen uit database
         public static ObservableCollection<Genre> GetGenres()
         {
             ObservableCollection<Genre> lijst = new ObservableCollection<Genre>();
@@ -36,8 +38,8 @@ namespace ProjectMvvm.models
             while (reader.Read())
             {
                 Genre g = new Genre();
-                string ID = (string)reader["ID"];
-                g._ID = ID;
+                int ID = (int)reader["ID"];
+                g._ID = Convert.ToString(ID);
                 g._Name = !Convert.IsDBNull((string)reader["Genre"]) ? (string)reader["Genre"] : "";
                
                lijst.Add(g);

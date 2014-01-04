@@ -76,8 +76,8 @@ namespace ProjectMvvm.models
             {
                 Band b = new Band();
 
-                string ID = (string)reader["ID"];
-                b.ID = ID;
+                int ID = (int)reader["ID"];
+                b.ID = Convert.ToString(ID);
               // !Convert.IsDBNull((DateTime)reader["Date"]) ? (DateTime)reader["Date"] : today;
 
                 b.Name = !Convert.IsDBNull((string)reader["Name"]) ? (string)reader["Name"] : "";
@@ -85,7 +85,7 @@ namespace ProjectMvvm.models
                 b.Description = !Convert.IsDBNull((string)reader["Description"]) ? (string)reader["Description"] : "";
                 b.Twitter = !Convert.IsDBNull((string)reader["Twitter"]) ? (string)reader["Twitter"] : "";
                 b.Facebook = !Convert.IsDBNull((string)reader["Facebook"]) ? (string)reader["Facebook"] : "";
-                b.Genres = GetAllGenresFromBand(ID);
+                b.Genres = GetAllGenresFromBand(Convert.ToString(ID));
                 list.Add(b);
             }
             return list;

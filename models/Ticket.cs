@@ -51,6 +51,8 @@ namespace ProjectMvvm.models
             set { _Amount = value; }
         }
 
+
+        //tickets ophalen uit database
         public static ObservableCollection<Ticket> GetTickets()
         {
             ObservableCollection<Ticket> lijst = new ObservableCollection<Ticket>();
@@ -73,6 +75,7 @@ namespace ProjectMvvm.models
             return lijst;
         }
 
+        //nieuwe tickets inserten in database
         public static void InsertTicket(Ticket t)
         {
             String sSQL = "INSERT INTO Ticket (TicketHolder, TicketHolderEmail, ID, Amount) VALUES (@TicketHolder, @TicketHolderEmail, @TicketTypeID, @Amount)";
