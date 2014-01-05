@@ -23,5 +23,10 @@ namespace ProjectMvvm.view
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Printen is momenteel niet mogelijk");
+        }
     }
 }

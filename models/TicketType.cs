@@ -115,6 +115,18 @@ namespace ProjectMvvm.models
 
             Database.ModifyData(sSQL, par1, par2, par3, par4);
         }
+        public static void UpdateTicketTypeAmount(TicketType ticketType)
+        {
+            String sSQL = "UPDATE TicketType SET  AvailableTickets = @AvailableTickets WHERE Name= @Name";
+
+            DbParameter par1 = Database.AddParameter("@Name", ticketType._Name);
+           
+            DbParameter par2 = Database.AddParameter("@AvailableTickets", Convert.ToInt32(ticketType._AvailableTickets));
+           
+
+            Database.ModifyData(sSQL, par1, par2);
+        }
+
 
 
         //insert database
@@ -138,6 +150,11 @@ namespace ProjectMvvm.models
 
             Database.ModifyData(sSQL, par1);
         
+        }
+
+        public override string ToString()
+        {
+            return this.Name;
         }
     }
 }

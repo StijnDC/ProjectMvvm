@@ -63,11 +63,15 @@ namespace ProjectMvvm.models
             while (reader.Read())
             {
                 Ticket t = new Ticket();
-                TicketType tick = new TicketType();
+
+                int tick = (int)reader["TicketType"];
                 t._ID = reader["ID"].ToString();
                 t.Ticketholder = !Convert.IsDBNull((string)reader["TicketHolder"]) ? (string)reader["TicketHolder"] : "";
                 t.TicketholderEmail = !Convert.IsDBNull((string)reader["TicketHolderEmail"]) ? (string)reader["TicketHolderEmail"] : "";
-                t.TicketType = !Convert.IsDBNull((TicketType)reader["TicketType"]) ? (TicketType)reader["TicketType"] : tick ;
+
+                
+                t.TicketType =  TicketType.GetTicketTypeByID(Convert.ToString(tick));
+
                 t.Amount = !Convert.IsDBNull((int)reader["Amount"]) ? (int)reader["Amount"] : 0;
                 
                 lijst.Add(t);
@@ -81,14 +85,27 @@ namespace ProjectMvvm.models
         //nieuwe tickets inserten in database
         public static void InsertTicket(Ticket t)
         {
-            String sSQL = "INSERT INTO Ticket (TicketHolder, TicketHolderEmail, ID, Amount) VALUES (@TicketHolder, @TicketHolderEmail, @TicketTypeID, @Amount)";
+            String sSQL = "INSERT INTO Ticket (TicketHolder, TicketHolderEmail, TicketType, Amount) VALUES (@TicketHolder, @TicketHolderEmail, @TicketType, @Amount)";
 
             DbParameter par1 = Database.AddParameter("@TicketHolder", t._Ticketholder);
             DbParameter par2 = Database.AddParameter("@TicketHolderEmail", t._TicketholderEmail);
-            DbParameter par3 = Database.AddParameter("@ID", Convert.ToInt32(t._TicketType.ID));
+            DbParameter par3 = Database.AddParameter("@TicketType", Convert.ToInt32(t.TicketType.ID));
             DbParameter par4 = Database.AddParameter("@Amount", Convert.ToInt32(t._Amount));
 
             Database.ModifyData(sSQL, par1, par2, par3, par4);
         }
+
+        public static void RemoveTicket(Ticket t)
+        {
+            String sSQL = "DELETE TOP (1) FROM Ticket WHERE TicketHolder = @Ticketholder AND TicketHolderEmail = @TicketHolderEmail AND TicketType = @TicketType AND Amount = @amount";
+
+            DbParameter par1 = Database.AddParameter("@TicketHolder", t._Ticketholder);
+            DbParameter par2 = Database.AddParameter("@TicketHolderEmail", t._TicketholderEmail);
+            DbParameter par3 = Database.AddParameter("@TicketType", Convert.ToInt32(t.TicketType.ID));
+            DbParameter par4 = Database.AddParameter("@Amount", Convert.ToInt32(t._Amount));
+
+            Database.ModifyData(sSQL, par1, par2, par3, par4);
+        }
+
     }
 }
