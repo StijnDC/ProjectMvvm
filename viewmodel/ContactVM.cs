@@ -29,7 +29,7 @@ namespace ProjectMvvm.viewmodel
             }
         }
 
-        //moet nog aangepast worden, hier zit nog een fout!
+        
         private ObservableCollection<ContactPersonType> _types;
         public ObservableCollection<ContactPersonType> Types
         {
@@ -45,11 +45,13 @@ namespace ProjectMvvm.viewmodel
         }
 
         //constructors aanmaken om alles bij te houden
-        private ObservableCollection<ContactPerson> _contactpersons;
+        
         private ObservableCollection<ContactPersonType> _changeTypes;
         private ContactPerson _contactperson;
         private ContactPersonType _selectedType;
         private ContactPersonType _typeChange;
+
+        private ObservableCollection<ContactPerson> _contactpersons;
         public ObservableCollection<ContactPerson> Contactpersons
         {
             get
@@ -62,18 +64,7 @@ namespace ProjectMvvm.viewmodel
                 OnPropertyChanged("Contactpersons");
             }
         }
-        public ObservableCollection<ContactPersonType> ChangeTypes
-        {
-            get
-            {
-                return _changeTypes;
-            }
-            set
-            {
-                _changeTypes = value;
-                OnPropertyChanged("ChangeTypes");
-            }
-        }
+        
         public ContactPerson SelectedContactperson
         {
             get
@@ -85,6 +76,19 @@ namespace ProjectMvvm.viewmodel
                 _contactperson = value;
                 OnPropertyChanged("SelectedContactperson");
                
+            }
+        }
+
+        public ObservableCollection<ContactPersonType> ChangeTypes
+        {
+            get
+            {
+                return _changeTypes;
+            }
+            set
+            {
+                _changeTypes = value;
+                OnPropertyChanged("ChangeTypes");
             }
         }
         public ContactPersonType SelectedType
@@ -115,21 +119,9 @@ namespace ProjectMvvm.viewmodel
 
         private ObservableCollection<ContactPerson> CheckContactPerson(ContactPersonType type)
         {
-            if (type != null)
-            {
-                if (type.Name == "Alle")
-                {
-                    return _contactpersons = ContactPerson.GetContactPersons();
-                }
-                else
-                {
-                    return _contactpersons = ContactPerson.FilterContactpersons(type.ID);
-                }
-            }
-            else
-            {
+                      
                 return _contactpersons = ContactPerson.GetContactPersons();
-            }
+            
         }
 
 

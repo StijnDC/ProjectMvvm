@@ -110,37 +110,7 @@ namespace ProjectMvvm.models
             return list;
         }
 
-        //Filteren op een JobRole
-        public static ObservableCollection<ContactPerson> FilterContactpersons(String ID)
-        {
-            ObservableCollection<ContactPerson> list = new ObservableCollection<ContactPerson>();
-
-            String sSQL = "SELECT * FROM ContactPerson WHERE JobRole = @JobRole";
-            DbParameter par1 = Database.AddParameter("@JobRole", Convert.ToInt32(ID));
-            DbDataReader reader = Database.GetData(sSQL, par1);
-
-            while (reader.Read())
-            {
-                ContactPerson c = new ContactPerson();
-
-                int id = (int)reader["ID"];
-                c.ID = Convert.ToString(id);
-                c.Name = !Convert.IsDBNull((string)reader["Name"]) ? (string)reader["Name"] : "";
-                c.Company = !Convert.IsDBNull((string)reader["Company"]) ? (string)reader["Company"] : "";
-                c._JobRole = ContactPersonType.GetJobeRoleByID(reader["JobRole"].ToString());
-
-                c.City = !Convert.IsDBNull((string)reader["City"]) ? (string)reader["City"] : "";
-                c.Email = !Convert.IsDBNull((string)reader["EMail"]) ? (string)reader["EMail"] : "";
-                c.Phone = !Convert.IsDBNull((string)reader["Phone"]) ? (string)reader["Phone"] : "";
-                c.Cellphone = !Convert.IsDBNull((string)reader["CellPhone"]) ? (string)reader["CellPhone"] : "";
-
-               
-
-
-                list.Add(c);
-            }
-            return list;
-        }
+       
 
         //Insert in de database
         public static void InsertContactperson(ContactPerson c)

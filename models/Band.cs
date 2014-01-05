@@ -56,9 +56,9 @@ namespace ProjectMvvm.models
             set { _Facebook = value; }
         }
         
-        private ObservableCollection<Genre> _Genres;
+        private Genre _Genres;
 
-        public ObservableCollection<Genre> Genres
+        public Genre Genres
         {
             get { return _Genres; }
             set { _Genres = value; }
@@ -75,29 +75,31 @@ namespace ProjectMvvm.models
             while (reader.Read())
             {
                 Band b = new Band();
-
+                int gen = (int)reader["Genres"];
                 int ID = (int)reader["ID"];
                 b.ID = Convert.ToString(ID);
-              // !Convert.IsDBNull((DateTime)reader["Date"]) ? (DateTime)reader["Date"] : today;
+              
 
                 b.Name = !Convert.IsDBNull((string)reader["Name"]) ? (string)reader["Name"] : "";
                 b.Picture = !Convert.IsDBNull((string)reader["Picture"]) ? (string)reader["Picture"] : null;
                 b.Description = !Convert.IsDBNull((string)reader["Description"]) ? (string)reader["Description"] : "";
                 b.Twitter = !Convert.IsDBNull((string)reader["Twitter"]) ? (string)reader["Twitter"] : "";
                 b.Facebook = !Convert.IsDBNull((string)reader["Facebook"]) ? (string)reader["Facebook"] : "";
-                b.Genres = GetAllGenresFromBand(Convert.ToString(ID));
+                b.Genres = Genre.GetGenreByID(Convert.ToString(gen));
+
+               
                 list.Add(b);
             }
             return list;
         }
 
-        private static ObservableCollection<Genre> GetAllGenresFromBand(String BandID)
+        private static ObservableCollection<Genre> GetAllGenresFromBand(int genreID)
         {
             ObservableCollection<Genre> lijst = new ObservableCollection<Genre>();
             ObservableCollection<Genre> genres = Genre.GetGenres();
 
             String sSQL = "SELECT * FROM Genre WHERE ID = @ID";
-            DbParameter par1 = Database.AddParameter("@ID", BandID);
+            DbParameter par1 = Database.AddParameter("@ID", genreID);
             DbDataReader reader = Database.GetData(sSQL, par1);
 
             while (reader.Read())
@@ -133,9 +135,9 @@ namespace ProjectMvvm.models
         }
 
         //Band aanpassen in database 
-        public static void ModifyBand(Band b)
+        public static void EditBand(Band b)
         {
-            String sSQL = "UPDATE Band SET Name = @Name, Picture = @Picture, Description = @Description, Twitter = @Twitter, Facebook = @Facebook WHERE ID = @ID";
+            String sSQL = "UPDATE Band SET Name = @Name, Picture = @Picture, Description = @Description, Twitter = @Twitter, Facebook = @Facebook, Genres = @Genre WHERE ID = @ID";
 
             DbParameter par1 = Database.AddParameter("@Name", b._Name);
             DbParameter par2 = Database.AddParameter("@Picture", b._Picture);
@@ -143,8 +145,10 @@ namespace ProjectMvvm.models
             DbParameter par4 = Database.AddParameter("@Twitter", b.Twitter);
             DbParameter par5 = Database.AddParameter("@Facebook", b._Facebook);
             DbParameter par6 = Database.AddParameter("@ID", b._ID);
+            DbParameter par7 = Database.AddParameter("@Genre", b.Genres.ID);
+           
 
-            Database.ModifyData(sSQL, par1, par2, par3, par4, par5, par6);
+            Database.ModifyData(sSQL, par1, par2, par3, par4, par5, par6,par7);
         }
 
         //Band verwijderen van database

@@ -20,6 +20,11 @@ namespace ProjectMvvm.viewmodel
             _festival = Festival.GetFestival();
             _tickettypes = TicketType.GetTicketTypes();
             _stagetypes = Stage.GetStages();
+            _Bands = Band.GetBands();
+            _genres = Genre.GetGenres();
+            _changeGenres = Genre.GetGenres();
+
+
 
 
 
@@ -31,6 +36,215 @@ namespace ProjectMvvm.viewmodel
         {
             get { return "Settings"; }
         }
+
+
+        #region band code
+
+
+        private ObservableCollection<Genre> _genres;
+        public ObservableCollection<Genre> Genres
+        {
+            get
+            {
+                return _genres;
+            }
+            set
+            {
+                _genres = value;
+                OnPropertyChanged("Genres");
+            }
+        }
+
+        //constructors aanmaken om alles bij te houden
+
+        private ObservableCollection<Genre> _changeGenres;
+        private Band _Band;
+        private Genre _selectedGenres;
+        private Genre _GenreChange;
+
+        private ObservableCollection<Band> _Bands;
+        public ObservableCollection<Band> Bands
+        {
+            get
+            {
+                return _Bands;
+            }
+            set
+            {
+                _Bands = value;
+                OnPropertyChanged("Bands");
+            }
+        }
+
+        public Band SelectedBand
+        {
+            get
+            {
+                return _Band;
+            }
+            set
+            {
+                _Band = value;
+                OnPropertyChanged("SelectedBand");
+
+            }
+        }
+
+        public ObservableCollection<Genre> ChangeGenres
+        {
+            get
+            {
+                return _changeGenres;
+            }
+            set
+            {
+                _changeGenres = value;
+                OnPropertyChanged("Change");
+            }
+        }
+        public Genre SelectedGenres
+        {
+            get
+            {
+                return _selectedGenres;
+            }
+            set
+            {
+                _selectedGenres = value;
+                OnPropertyChanged("SelectedGenres");
+                
+            }
+        }
+        public Genre GenreChange
+        {
+            get
+            {
+                return _GenreChange;
+            }
+            set
+            {
+                _GenreChange = value;
+                OnPropertyChanged("GenreChange");
+            }
+        }
+
+     
+       
+
+
+
+        public ICommand EditBandCommand
+        {
+            get
+            {
+                return new RelayCommand(EditBand);
+            }
+        }
+
+        private void EditBand()
+        {
+
+            if (_GenreChange == null)
+            {
+                MessageBox.Show("Selecteerd alstublief het juiste Genre.");
+            }
+            else
+            {
+                Band b = new Band();
+                b.ID = SelectedBand.ID;
+                b.Name = SelectedBand.Name;
+                b.Picture = SelectedBand.Picture;
+                b.Description = SelectedBand.Description;
+                b.Twitter = SelectedBand.Twitter;
+                b.Facebook = SelectedBand.Facebook;
+                b.Genres = _GenreChange;
+
+
+                Band.EditBand(b);
+
+
+                MessageBox.Show("de band  " + SelectedBand.Name + " is aangepast");
+
+                _Bands = Band.GetBands();
+                OnPropertyChanged("Bands");
+            }
+        }
+
+
+        public ICommand NewBandCommand
+        {
+            get
+            {
+                return new RelayCommand(NewBandType);
+            }
+        }
+
+        private void NewBandType()
+        {
+
+            if (_GenreChange == null)
+            {
+                MessageBox.Show("Selecteerd alstublief het juiste Genre.");
+            }
+            else
+            {
+
+                Band b = new Band();
+                b.Name = SelectedBand.Name;
+                b.Picture = SelectedBand.Picture;
+                b.Description = SelectedBand.Description;
+                b.Twitter = SelectedBand.Twitter;
+                b.Facebook = SelectedBand.Facebook;
+                b.Genres = _GenreChange;
+
+
+                Band.AddBand(b);
+
+
+                MessageBox.Show("de band  " + SelectedBand.Name + " is toegevoegd");
+
+                _Bands = Band.GetBands();
+                OnPropertyChanged("Bands");
+            }
+        }
+
+        public ICommand DeleteBandCommand
+        {
+            get
+            {
+                return new RelayCommand(DeleteBandType);
+            }
+        }
+
+        private void DeleteBandType()
+        {
+           
+                Band b = new Band();
+                b.Name = SelectedBand.Name;
+                b.Picture = SelectedBand.Picture;
+                b.Description = SelectedBand.Description;
+                b.Twitter = SelectedBand.Twitter;
+                b.Facebook = SelectedBand.Facebook;
+                b.Genres = SelectedBand.Genres;
+
+
+                Band.DeleteBand(b);
+
+
+                MessageBox.Show("de band  " + SelectedBand.Name + " is verwijderd ");
+
+                _Bands = Band.GetBands();
+                OnPropertyChanged("Bands");
+            
+        }
+
+
+
+
+        #endregion
+
+
+        #region stage types
 
         private ObservableCollection<Stage> _stagetypes;
         public ObservableCollection<Stage> StageTypes {
@@ -127,7 +341,7 @@ namespace ProjectMvvm.viewmodel
         }
 
 
-
+#endregion
 
         #region ticket types
         private ObservableCollection<TicketType> _tickettypes;

@@ -79,27 +79,23 @@ namespace ProjectMvvm.models
             Database.ModifyData(sSQL, par1);
         }
 
-        public string Error
+
+        public override string ToString()
         {
-            get
-            {
-                return "tis kapot";
-            }
+            return this.Name;
         }
-        public string this[string columnName]
+
+        public static Genre GetGenreByID(String GenreID)
         {
-            get
-            {
-                string error = string.Empty;
-                switch (columnName)
-                {
-                    case "Genre":
-                        if (string.IsNullOrEmpty(_Name))
-                            error = "De naam is verplicht";
-                        break;
-                }
-                return error;
-            }
+            ObservableCollection<Genre> lijst = Genre.GetGenres();
+
+            return lijst.Where(g => g._ID == GenreID).SingleOrDefault();
+        }
+
+        public static Genre GetJobeRoleByName(Genre g)
+        {
+            ObservableCollection<Genre> lijst = Genre.GetGenres();
+            return lijst.Where(gg => gg == g).SingleOrDefault();
         }
 
     }
