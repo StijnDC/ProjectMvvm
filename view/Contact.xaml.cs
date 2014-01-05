@@ -22,34 +22,19 @@ namespace ProjectMvvm.view
         public Contact()
         {
             InitializeComponent();
-            txtCompany.IsEnabled = false;
-            txtEmail.IsEnabled = false;
-            txtJobRole.IsEnabled = false;
-            txtMobile.IsEnabled = false;
-            txtName.IsEnabled = false;
-            txtPhone.IsEnabled = false;
+            
 
             
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-            txtCompany.IsEnabled = true;
-            txtEmail.IsEnabled = true;
-            txtJobRole.IsEnabled = true;
-            txtMobile.IsEnabled = true;
-            txtName.IsEnabled = true;
-            txtPhone.IsEnabled = true;
+           
         }
 
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            txtCompany.IsEnabled = false;
-            txtEmail.IsEnabled = false;
-            txtJobRole.IsEnabled = false;
-            txtMobile.IsEnabled = false;
-            txtName.IsEnabled = false;
-            txtPhone.IsEnabled = false;
+           
         }
     }
 }

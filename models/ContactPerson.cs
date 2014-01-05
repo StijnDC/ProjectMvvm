@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
 using System.Data.Common;
 using System.Linq;
 using System.Text;
@@ -51,13 +52,17 @@ namespace ProjectMvvm.models
         }
         private String _Email;
 
+        [Required]
+        [DataType(DataType.EmailAddress)]
+        [EmailAddress]
         public String Email
         {
             get { return _Email; }
             set { _Email = value; }
         }
         private String _Phone;
-
+        
+        [Required]
         public String Phone
         {
             get { return _Phone; }

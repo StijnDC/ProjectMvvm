@@ -13,8 +13,9 @@
         <ListBox HorizontalAlignment="Left" Height="307" Margin="257,59,0,0" VerticalAlignment="Top" Width="297"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,29,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="nl-be" Text="Type of ticket"/></TextBlock>
         <TextBlock HorizontalAlignment="Left" Margin="257,29,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="nl-be" Text="History"/></TextBlock>
-        <Button Content="Save" HorizontalAlignment="Left" Margin="10,332,0,0" VerticalAlignment="Top" Width="75" />
-        <Button Content="Edit" HorizontalAlignment="Left" Margin="125,332,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Save" HorizontalAlignment="Left" Margin="10,250,0,0" VerticalAlignment="Top" Width="75" />
+        <Button Content="Edit" HorizontalAlignment="Left" Margin="125,250,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Print" HorizontalAlignment="Left" Margin="10,287,0,0" VerticalAlignment="Top" Width="190"/>
 
     </Grid>
 </Window>

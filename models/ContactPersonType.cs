@@ -90,5 +90,13 @@ namespace ProjectMvvm.models
             Database.ModifyData(sSQL, par1, par2);
         }
 
+        public static void DeleteContactpersonType(ContactPersonType ct) {
+            string sSQL = "DELETE ContactPersonType Where Name = @Name";
+            DbParameter par1 = Database.AddParameter("@Name", ct.Name);
+            Database.ModifyData(sSQL, par1);
+
+
+        }
+
     }
 }

@@ -14,46 +14,105 @@
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
         <TextBlock HorizontalAlignment="Left" Margin="55,10,0,0" TextWrapping="Wrap" Text="Main" VerticalAlignment="Top" FontSize="24" FontFamily="Segoe WP"/>
-        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="61,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24"><Run Language="nl-be" Text="Tickets"/></TextBlock>
-        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="63,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24"><Run Language="nl-be" Text="Contacts"/></TextBlock>
-        <TextBlock Grid.Column="3" HorizontalAlignment="Left" Margin="71,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24"><Run Language="nl-be" Text="Stages"/></TextBlock>
-        <Rectangle HorizontalAlignment="Left" Height="762" Margin="10,44,0,0" VerticalAlignment="Top" Width="224" Fill="#FFF3F3F3"/>
-        <Rectangle HorizontalAlignment="Left" Height="762" Margin="10,44,0,0" VerticalAlignment="Top" Width="224" Fill="#FFF3F3F3" Grid.Column="1"/>
-        <Rectangle HorizontalAlignment="Left" Height="762" Margin="10,44,0,0" VerticalAlignment="Top" Width="224" Fill="#FFF3F3F3" Grid.Column="2"/>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="77,7,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24"><Run Language="nl-be" Text="Tickets"/></TextBlock>
+        <TextBlock Grid.Column="3" HorizontalAlignment="Left" Margin="42,7,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24"><Run Language="nl-be" Text="Stages"/></TextBlock>
+        <Rectangle HorizontalAlignment="Left" Height="762" Margin="10,44,0,0" VerticalAlignment="Top" Width="240" Fill="#FFF3F3F3"/>
+        <Rectangle HorizontalAlignment="Left" Height="759" Margin="10,44,0,0" VerticalAlignment="Top" Width="230" Fill="#FFF3F3F3" Grid.Column="1"/>
         <Rectangle HorizontalAlignment="Left" Height="762" Margin="10,44,0,0" VerticalAlignment="Top" Width="224" Fill="#FFF3F3F3" Grid.Column="3"/>
         <TextBlock HorizontalAlignment="Left" Margin="30,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="Festival Titel"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="30,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="184"/>
-        <DatePicker HorizontalAlignment="Left" Margin="30,143,0,0" VerticalAlignment="Top"/>
-        <DatePicker HorizontalAlignment="Left" Margin="30,211,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtFestivalNaam" HorizontalAlignment="Left" Height="23" Margin="30,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="184"
+                 Text="{Binding Festivals.Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                 />
+        <DatePicker HorizontalAlignment="Left" Margin="30,143,0,0" VerticalAlignment="Top"
+                    SelectedDate="{Binding Festivals.StartDate, UpdateSourceTrigger=PropertyChanged}"
+                    />
+        <DatePicker HorizontalAlignment="Left" Margin="30,211,0,0" VerticalAlignment="Top"
+                    SelectedDate="{Binding Festivals.EndDate, UpdateSourceTrigger=PropertyChanged}"
+                    />
         <TextBlock HorizontalAlignment="Left" Margin="30,122,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="nl-be" Text="Start Date"/><LineBreak/><Run Language="nl-be"/></TextBlock>
         <TextBlock HorizontalAlignment="Left" Margin="30,190,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="nl-be" Text="End Date"/><LineBreak/><Run Language="nl-be"/></TextBlock>
-        <ComboBox Grid.Column="1" HorizontalAlignment="Left" Margin="13,82,0,0" VerticalAlignment="Top" Width="221" ItemsSource="{Binding TicketTypes, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedTicketType, UpdateSourceTrigger=PropertyChanged}"/>
-        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="13,60,0,0" TextWrapping="Wrap" Text="Typ of Ticket:" VerticalAlignment="Top"/>
-        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="13,201,0,0" TextWrapping="Wrap" Text="Price:" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtPrice" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="61,201,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="72"
-                 Text="{Binding SelectedTicketType.Price, UpdateSourceTrigger=PropertyChanged}"/>
-        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="13,240,0,0" TextWrapping="Wrap" Text="No available:" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtAvailable" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="114,240,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="82"
-                 Text="{Binding SelectedTicketType.AvailableTickets, UpdateSourceTrigger=PropertyChanged}"
-                 />
-        <TextBox x:Name="txtName" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="22,146,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="196"
-                 Text="{Binding SelectedTicketType.Name, UpdateSourceTrigger=PropertyChanged}"
-                 />
-        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="13,122,0,0" TextWrapping="Wrap" Text="Name:" VerticalAlignment="Top"/>
-        <Button x:Name="btnEdit" Content="Edit" Grid.Column="1" HorizontalAlignment="Left" Margin="22,315,0,0" VerticalAlignment="Top" Width="90" Click="btnEdit_Click"/>
-        <Button Content="Save" Grid.Column="1" HorizontalAlignment="Left" Margin="128,315,0,0" VerticalAlignment="Top" Width="90"/>
-        <Button Content="Remove" Grid.Column="1" HorizontalAlignment="Left" Margin="22,359,0,0" VerticalAlignment="Top" Width="90" />
-        <Button Content="New" Grid.Column="1" HorizontalAlignment="Left" Margin="128,359,0,0" VerticalAlignment="Top" Width="90"/>
-        <ComboBox Grid.Column="3" HorizontalAlignment="Left" Margin="13,82,0,0" VerticalAlignment="Top" Width="221"/>
-        <TextBlock Grid.Column="3" HorizontalAlignment="Left" Margin="13,60,0,0" TextWrapping="Wrap" Text="Typ of Stage:" VerticalAlignment="Top"/>
-        <TextBox Grid.Column="3" HorizontalAlignment="Left" Height="23" Margin="22,146,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="196" />
-        <TextBlock Grid.Column="3" HorizontalAlignment="Left" Margin="13,122,0,0" TextWrapping="Wrap" Text="Name:" VerticalAlignment="Top"/>
-        <Button Content="Edit" Grid.Column="3" HorizontalAlignment="Left" Margin="22,315,0,0" VerticalAlignment="Top" Width="90"/>
-        <Button Content="Save" Grid.Column="3" HorizontalAlignment="Left" Margin="128,315,0,0" VerticalAlignment="Top" Width="90"/>
-        <Button Content="Remove" Grid.Column="3" HorizontalAlignment="Left" Margin="22,359,0,0" VerticalAlignment="Top" Width="90" />
-        <Button Content="New" Grid.Column="3" HorizontalAlignment="Left" Margin="128,359,0,0" VerticalAlignment="Top" Width="90"/>
-        <TextBlock HorizontalAlignment="Left" Grid.Column="3" Margin="13,190,0,0" TextWrapping="Wrap" Text="Genre's (seperated by comma)" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Grid.Column="3" Height="79" Margin="22,211,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
+        <DataGrid Grid.Column="1" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top" Height="175" Width="230" AutoGenerateColumns="False"
+                  ItemsSource="{Binding TicketTypes , UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding  SelectedTicketType, UpdateSourceTrigger=PropertyChanged}"
+                  >
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Naam" MinWidth="90">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name,  UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="Price" MinWidth="60">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Price,  UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <TextBox Text="{Binding Price, UpdateSourceTrigger=PropertyChanged}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="Available" MinWidth="72">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding AvailableTickets,  UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <TextBox Text="{Binding AvailableTickets, UpdateSourceTrigger=PropertyChanged}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <DataGrid Grid.Column="3" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top" Width="224" Height="175" AutoGenerateColumns="False"
+                   ItemsSource="{Binding StageTypes , UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding  SelectedStageType, UpdateSourceTrigger=PropertyChanged}"
+                  >
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Naam" MinWidth="216">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name,  UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+
+        </DataGrid>
+        <Rectangle HorizontalAlignment="Left" Height="759" Margin="10,44,0,0" VerticalAlignment="Top" Width="230" Fill="#FFF3F3F3" Grid.Column="2"/>
+        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="83,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24"><Run Language="nl-be" Text="Jobs"/></TextBlock>
+        <ComboBox Grid.Column="2" HorizontalAlignment="Left" Margin="10,82,0,0" VerticalAlignment="Top" Width="230" ItemsSource="{Binding Types}" SelectedItem="{Binding CType, UpdateSourceTrigger=PropertyChanged}" />
+        <Label Content="Functions" Grid.Column="2" HorizontalAlignment="Left" Margin="10,56,0,0" VerticalAlignment="Top"/>
+        <Label Content="Name" Grid.Column="2" HorizontalAlignment="Left" Margin="10,159,0,0" VerticalAlignment="Top" />
+        <TextBox Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="10,197,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="230" Text="{Binding CType.Name}" />
+        <Button Content="Add New job" Grid.Column="2" HorizontalAlignment="Left" Margin="10,269,0,0" VerticalAlignment="Top" Width="230"  Command="{Binding NewContactpersonTypeCommand}" />
+        <Button Content="Edit Job" Grid.Column="2" HorizontalAlignment="Left" Margin="10,300,0,0" VerticalAlignment="Top" Width="230" Command="{Binding EditContactpersonTypeCommand}" />
+        <Button Content="Remove Job" Grid.Column="2" HorizontalAlignment="Left" Margin="10,334,0,0" VerticalAlignment="Top" Width="230" Command="{Binding DeleteContactpersonTypeCommand}"/>
+        <Button Content="edit festival" HorizontalAlignment="Left" Margin="10,269,0,0" VerticalAlignment="Top" Width="240" Command="{Binding EditFestivalCommand}" />
+        <Button Content="Add New Ticket Type" Grid.Column="1" HorizontalAlignment="Left" Margin="10,269,0,0" VerticalAlignment="Top" Width="230" Command="{Binding NewTicketTypeCommand}" />
+        <Button Content="Edit Ticket Type" Grid.Column="1" HorizontalAlignment="Left" Margin="10,300,0,0" VerticalAlignment="Top" Width="230" Command="{Binding  EditTicketTypeCommand}" />
+        <Button Content="Remove Ticket Type" Grid.Column="1" HorizontalAlignment="Left" Margin="10,334,0,0" VerticalAlignment="Top" Width="230" Command="{Binding DeleteTicketTypeCommand}" />
+        <Button Content="Add New stage" Grid.Column="3" HorizontalAlignment="Left" Margin="10,274,0,0" VerticalAlignment="Top" Width="230"  Command="{Binding NewStageTypeCommand}" />
+        <Button Content="Edit stage" Grid.Column="3" HorizontalAlignment="Left" Margin="10,305,0,0" VerticalAlignment="Top" Width="230" Command="{Binding EditStageTypeCommand}" />
+        <Button Content="Remove stage" Grid.Column="3" HorizontalAlignment="Left" Margin="10,339,0,0" VerticalAlignment="Top" Width="230" Command="{Binding DeleteStageTypeCommand}"/>
+
+
     </Grid>
 
 </UserControl>

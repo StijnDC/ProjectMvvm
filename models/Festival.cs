@@ -39,6 +39,8 @@ namespace ProjectMvvm.models
             set
             {
                 _Name = value;
+               
+
             }
         }
 
@@ -47,7 +49,7 @@ namespace ProjectMvvm.models
         public static Festival GetFestival()
         {
             Festival festival = new Festival();
-
+             DateTime today = DateTime.Today;
             String sSQL = "SELECT * FROM Festival";
 
             DbDataReader reader = Database.GetData(sSQL);
@@ -55,13 +57,21 @@ namespace ProjectMvvm.models
             {
                 Festival fes = new Festival();
 
-                DateTime today = DateTime.Now;
 
-                fes.Name = !Convert.IsDBNull((string)reader["Name"]) ? (string)reader["Name"] : "";
+
+                fes.Name = !Convert.IsDBNull((string)reader["FestivalName"]) ? (string)reader["FestivalName"] : "";
                 fes.StartDate = !Convert.IsDBNull((DateTime)reader["StartDate"]) ? (DateTime)reader["StartDate"] : today;
                 fes.EndDate = !Convert.IsDBNull((DateTime)reader["EndDate"]) ? (DateTime)reader["EndDate"] : today; 
                
                 festival = fes;
+            }
+
+            if (festival.Name == null) {
+                festival.StartDate = today;
+                festival.EndDate = today;
+                festival.Name = "";
+
+            
             }
             return festival;
         }

@@ -82,6 +82,8 @@ namespace ProjectMvvm.models
             ticketTypes.Add(t);
 
                   }
+
+
         return ticketTypes;
 
         }
@@ -123,10 +125,18 @@ namespace ProjectMvvm.models
         DbParameter par3 = Database.AddParameter("@AvailableTickets", ticketType.AvailableTickets);
 
         Database.ModifyData(sSQL, par1, par2, par3);
+        
+        }
 
+        //remove from database
 
+        public static void DeleteTicketType(TicketType ticketType) {
 
+            string sSQL = "DELETE FROM TicketType WHERE Name = @Name";
+            
+            DbParameter par1 = Database.AddParameter("@Name", ticketType._Name);
 
+            Database.ModifyData(sSQL, par1);
         
         }
     }

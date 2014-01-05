@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="clr-namespace:ProjectMvvm.viewmodel"
         xmlns:v="clr-namespace:ProjectMvvm.view"
-        Title="Festival" Height="1000" Width="1100">
+        Title="FestivalApp" Height="1000" Width="1100">
 
 
     <Window.DataContext>

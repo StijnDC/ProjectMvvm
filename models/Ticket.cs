@@ -72,6 +72,9 @@ namespace ProjectMvvm.models
                 
                 lijst.Add(t);
             }
+
+          
+
             return lijst;
         }
 

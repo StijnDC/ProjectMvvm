@@ -160,7 +160,7 @@ namespace ProjectMvvm.viewmodel
         {
             if (_typeChange == null)
             {
-                MessageBox.Show("Er is geen functie geselecteerd.");
+                MessageBox.Show("Selecteerd alstublief de juiste jobRole.");
             }
             else
             {
@@ -176,7 +176,7 @@ namespace ProjectMvvm.viewmodel
 
                 ContactPerson.InsertContactperson(c);
 
-                MessageBox.Show("De wijzigingen werden opgeslaan.");
+                MessageBox.Show("De nieuwe contactpersoon werd opgeslaan");
                 OnPropertyChanged("Contactpersons");
             }
         }
@@ -186,7 +186,7 @@ namespace ProjectMvvm.viewmodel
         {
             if (_typeChange == null)
             {
-                MessageBox.Show("Er is geen functie geselecteerd.");
+                MessageBox.Show("Selecteerd alstublief de juiste jobRole.");
             }
             else
             {
@@ -223,7 +223,7 @@ namespace ProjectMvvm.viewmodel
 
             ContactPerson.DeleteContactperson(c);
 
-            MessageBox.Show("De wijzigingen werden opgeslaan.");
+            MessageBox.Show("De contactpersoon is verwijderd");
             OnPropertyChanged("Contactpersons");
         }
 

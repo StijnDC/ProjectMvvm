@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="clr-namespace:ProjectMvvm.viewmodel"
         xmlns:v="clr-namespace:ProjectMvvm.view"
-        Title="Contacts" Height="377.125" Width="782.425" ResizeMode="NoResize">
+        Title="Contacts" Height="437.125" Width="1041.425" ResizeMode="NoResize">
     <Window.DataContext>
         <vm:ContactVM/>
     </Window.DataContext>
@@ -11,7 +11,7 @@
 
 
     <Grid Margin="0,0,2,-5">
-        <DataGrid HorizontalAlignment="Left" Height="268" Margin="57,54,0,0" VerticalAlignment="Top" Width="217"
+        <DataGrid HorizontalAlignment="Left" Height="268" Margin="10,22,0,0" VerticalAlignment="Top" Width="991"
                   ItemsSource="{Binding Contactpersons, UpdateSourceTrigger=PropertyChanged}"  SelectedItem="{Binding SelectedContactperson, UpdateSourceTrigger=PropertyChanged}"  
                   AutoGenerateColumns="False"  SelectionChanged="DataGrid_SelectionChanged"
                   >
@@ -28,34 +28,93 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellEditingTemplate>
                 </DataGridTemplateColumn>
-            </DataGrid.Columns>
+                <DataGridTemplateColumn Header="JobRole" MinWidth="120">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock  Text="{Binding JobRole,  UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <TextBox Text="{Binding JobRole, UpdateSourceTrigger=PropertyChanged}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
 
+                <DataGridTemplateColumn Header="Company" MinWidth="130">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock  Text="{Binding Company,  UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <TextBox Text="{Binding Company, UpdateSourceTrigger=PropertyChanged}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="City" MinWidth="130">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock  Text="{Binding City,  UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <TextBox Text="{Binding City, UpdateSourceTrigger=PropertyChanged}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="Phone" MinWidth="130">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock  Text="{Binding Phone,  UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <TextBox Text="{Binding Phone, UpdateSourceTrigger=PropertyChanged}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="Cellphone" MinWidth="130">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock  Text="{Binding Cellphone,  UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <TextBox Text="{Binding Cellphone, UpdateSourceTrigger=PropertyChanged}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="Email" MinWidth="150">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock  Text="{Binding Email,  UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <TextBox Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
+
+
+            </DataGrid.Columns>
         </DataGrid>
-        <TextBlock HorizontalAlignment="Left" Margin="380,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="63"><Run Language="nl-be" Text="Name:"/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="380,117,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="63"><Run Language="nl-be" Text="Function:"/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="380,155,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="63"><Run Language="nl-be" Text="Company"/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="382,177,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="63"><Run Language="nl-be" Text="Tel:"/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="380,214,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="63"><Run Language="nl-be" Text="Mobile:"/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="380,253,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="63"><Run Language="nl-be" Text="E-mail:"/></TextBlock>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="461,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="265" x:Name="txtName"
-                 Text="{Binding SelectedContactperson.Name, UpdateSourceTrigger=PropertyChanged}"
-                 />
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="461,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="265" x:Name="txtJobRole"
-                 Text="{Binding SelectedContactperson.JobRole, UpdateSourceTrigger=PropertyChanged}"
-                 />
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="461,148,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="265" x:Name="txtCompany"
-                  Text="{Binding SelectedContactperson.Company, UpdateSourceTrigger=PropertyChanged}"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="463,177,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="265" x:Name="txtPhone"
-                  Text="{Binding SelectedContactperson.Phone, UpdateSourceTrigger=PropertyChanged}"
-                 />
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="461,213,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="265" x:Name="txtMobile"
-                  Text="{Binding SelectedContactperson.Cellphone, UpdateSourceTrigger=PropertyChanged}"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="461,252,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="265" x:Name="txtEmail"
-                 Text="{Binding SelectedContactperson.Email, UpdateSourceTrigger=PropertyChanged}"/>
-        <Button x:Name="btnEdit" Content="Edit" HorizontalAlignment="Left" Margin="339,302,0,0" VerticalAlignment="Top" Width="75" Click="btnEdit_Click" />
-        <Button x:Name="btnNew" Content="New" HorizontalAlignment="Left" Margin="444,302,0,0" VerticalAlignment="Top" Width="75" Command="{Binding NewContactPersonCommand}"/>
-        <Button x:Name="btnDelete" Content="Delete" HorizontalAlignment="Left" Margin="542,302,0,0" VerticalAlignment="Top" Width="75" Command="{Binding DeleteContactPersonCommand}"/>
-        <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left" Margin="653,302,0,0" VerticalAlignment="Top" Width="75" Command="{Binding SaveContactPersonCommand}"/>
+        <Button x:Name="btnNew" Content="New" HorizontalAlignment="Left" Margin="45,366,0,0" VerticalAlignment="Top" Width="100" Command="{Binding NewContactPersonCommand}"/>
+        <Button x:Name="btnDelete" Content="Delete" HorizontalAlignment="Left" Margin="223,366,0,0" VerticalAlignment="Top" Width="100" Command="{Binding DeleteContactPersonCommand}"/>
+        <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left" Margin="408,366,0,0" VerticalAlignment="Top" Width="100" Command="{Binding SaveContactPersonCommand}"/>
+        <ComboBox HorizontalAlignment="Left" Margin="10,329,0,0" VerticalAlignment="Top" Width="179" ItemsSource="{Binding ChangeTypes}" SelectedItem="{Binding TypeChange, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,308,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="nl-be" Text="New Function"/></TextBlock>
+
 
     </Grid>
 </Window>

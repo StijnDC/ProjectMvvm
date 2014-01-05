@@ -43,7 +43,18 @@ namespace ProjectMvvm.models
                 s.Name = !Convert.IsDBNull((string)reader["Name"]) ? (string)reader["Name"] : "";        
                      list.Add(s);
             }
+
+            
+            if (!list.Any()) {
+                Stage empty = new Stage();
+                empty.Name = "Er zijn momenteel geen stages";
+                list.Add(empty);
+
+            
+            }
+
             return list;
+
         }
 
         //Stage toevoegen aan database
