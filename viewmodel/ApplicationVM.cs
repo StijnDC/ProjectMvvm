@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
+
 namespace ProjectMvvm.viewmodel
 {
     class ApplicationVM : ObservableObject
@@ -46,6 +47,9 @@ namespace ProjectMvvm.viewmodel
         private void ChangePage(IPage page)
         {
             CurrentPage = page;
+          
+
+          
         }
     }
 }

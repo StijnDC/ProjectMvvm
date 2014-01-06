@@ -59,7 +59,10 @@ namespace ProjectMvvm.models
         public ObservableCollection<TicketType> TicketTypes {
 
             get { return _TicketTypes; }
-            set { _TicketTypes = value; OnPropertyChanged("TicketType"); }
+            set { _TicketTypes = value; OnPropertyChanged("TicketType");
+           
+
+            }
 
         
         }
@@ -83,7 +86,7 @@ namespace ProjectMvvm.models
 
                   }
 
-
+     
         return ticketTypes;
 
         }

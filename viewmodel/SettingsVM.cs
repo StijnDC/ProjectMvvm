@@ -24,12 +24,6 @@ namespace ProjectMvvm.viewmodel
             _genres = Genre.GetGenres();
             _changeGenres = Genre.GetGenres();
 
-
-
-
-
-          
-         
         
         }
         public string Name

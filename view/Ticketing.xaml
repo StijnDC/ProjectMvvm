@@ -26,7 +26,7 @@
                 Command="{Binding NewTicketCommand}"
                 />
         <Button Content="Remove" HorizontalAlignment="Left" Margin="125,290,0,0" VerticalAlignment="Top" Width="75" Command="{Binding RemoveTicketCommand}"/>
-        <Button Content="Print" HorizontalAlignment="Left" Margin="10,327,0,0" VerticalAlignment="Top" Width="190"/>
+        <Button Content="Print" HorizontalAlignment="Left" Margin="10,327,0,0" VerticalAlignment="Top" Width="190" Click="Button_Click"/>
         <DataGrid HorizontalAlignment="Left" Margin="257,50,0,0" VerticalAlignment="Top" Height="316" Width="380" AutoGenerateColumns="False"
                   ItemsSource="{Binding Tickets, UpdateSourceTrigger=PropertyChanged}"  SelectedItem="{Binding SelectedTicket, UpdateSourceTrigger=PropertyChanged}"
                   >

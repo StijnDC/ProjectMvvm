@@ -27,12 +27,11 @@ namespace ProjectMvvm.view
         public MainPage()
         {
             InitializeComponent();
-            
-            
-            
+        
 
         }
 
+        
 
       
     }

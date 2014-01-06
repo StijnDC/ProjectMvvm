@@ -40,12 +40,37 @@
         </Button>
         <TextBlock HorizontalAlignment="Left" Margin="77,468,0,0" TextWrapping="Wrap" Text="Ticket Counter" VerticalAlignment="Top"/>
         <Rectangle HorizontalAlignment="Left" Height="317" Margin="0,489,0,0" Stroke="Black" VerticalAlignment="Top" Width="641" Grid.ColumnSpan="2" Grid.Column="1"/>
-        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Tickets}" Margin="10,489,31,94">
+        <DataGrid x:Name="dgTicketCounter" AutoGenerateColumns="False" 
+                  ItemsSource="{Binding TicketTypes , UpdateSourceTrigger=PropertyChanged}" Margin="10,489,31,94">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
-                <DataGridTextColumn Header="Amount left" Binding="{Binding AvailableTickets}" />
-               
+                <DataGridTemplateColumn Header="Naam" MinWidth="100">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name,  UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="Price" MinWidth="80">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Price,  UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="Available" MinWidth="104">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding AvailableTickets,  UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
+        
         </DataGrid>
     </Grid>
 </UserControl>
