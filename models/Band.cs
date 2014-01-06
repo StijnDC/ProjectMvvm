@@ -123,15 +123,16 @@ namespace ProjectMvvm.models
         //Band toevoegen aan database
         public static void AddBand(Band b)
         {
-            String sSQL = "INSERT INTO Band (Name, Picture, Description, Twitter, Facebook) VALUES (@Name, @Picture, @Description, @Twitter, @Facebook)";
+            String sSQL = "INSERT INTO Band (Name, Picture, Description, Twitter, Facebook, Genres) VALUES (@Name, @Picture, @Description, @Twitter, @Facebook, @genre)";
 
             DbParameter par1 = Database.AddParameter("@Name", b._Name);
-            DbParameter par2 = Database.AddParameter("@Picture", b._Picture);
+            DbParameter par2 = Database.AddParameter("@Picture", "leeg");
             DbParameter par3 = Database.AddParameter("@Description", b._Description);
             DbParameter par4 = Database.AddParameter("@Twitter", b._Twitter);
             DbParameter par5 = Database.AddParameter("@Facebook", b._Facebook);
+            DbParameter par6 = Database.AddParameter("@genre", b.Genres.ID);
 
-            Database.ModifyData(sSQL, par1, par2, par3, par4, par5);
+            Database.ModifyData(sSQL, par1, par2, par3, par4, par5,par6);
         }
 
         //Band aanpassen in database 

@@ -13,6 +13,8 @@ namespace ProjectMvvm.viewmodel
 {
     class TicketingVM : ObservableObject
     {
+
+        //gegevens ophalen 
         public TicketingVM()
         {
             _tickettypes = TicketType.GetTicketTypes();
@@ -79,6 +81,8 @@ namespace ProjectMvvm.viewmodel
             }
         }
 
+        //commands
+
         public ICommand NewTicketCommand
         {
             get
@@ -96,6 +100,8 @@ namespace ProjectMvvm.viewmodel
             }
         }
 
+
+        //verwijderen ticket
         private void RemoveTicket()
         {
             if (SelectedTicketType == null)
@@ -140,6 +146,8 @@ namespace ProjectMvvm.viewmodel
                 }
             }
         }
+
+        //nieuw ticket aanmaken.
 
         private void NewTicket()
         {

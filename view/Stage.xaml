@@ -1,6 +1,110 @@
 ﻿<Window x:Class="ProjectMvvm.view.Stage"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:ProjectMvvm.viewmodel"
+        xmlns:v="clr-namespace:ProjectMvvm.view"
         Title="LineUp" Height="500" Width="730">
-    <Grid/>
+    <Window.DataContext>
+        <vm:StageVM/>
+    </Window.DataContext>
+
+    <Grid>
+        <DataGrid HorizontalAlignment="Left" Margin="194,10,0,0" VerticalAlignment="Top" Height="459" Width="518"
+                  AutoGenerateColumns="False" 
+                  ItemsSource="{Binding LineUP, UpdateSourceTrigger=PropertyChanged}"  SelectedItem="{Binding SelectedLineUP, UpdateSourceTrigger=PropertyChanged}"
+                  >
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Date" MinWidth="90">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock  Text="{Binding Date,  UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <TextBox Text="{Binding Date, UpdateSourceTrigger=PropertyChanged}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="start" MinWidth="122">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock  Text="{Binding From,  UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <TextBox Text="{Binding From, UpdateSourceTrigger=PropertyChanged}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="Until" MinWidth="100">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock  Text="{Binding Until,  UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <TextBox Text="{Binding Until, UpdateSourceTrigger=PropertyChanged}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="Stage" MinWidth="60">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock  Text="{Binding Stage,  UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <TextBox Text="{Binding Stage, UpdateSourceTrigger=PropertyChanged}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                    
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="Band" MinWidth="60">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock  Text="{Binding Band,  UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <TextBox Text="{Binding Band, UpdateSourceTrigger=PropertyChanged}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+
+
+
+
+        </DataGrid>
+        <Label Content="Kies een datum" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.921,1.154" Margin="10,10,0,0"/>
+        <DatePicker HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="143"
+                     Text="{Binding SelectedLineUP.Date, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                    />
+        <Label Content="Van" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.921,1.154" Margin="10,86,0,0"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="10,117,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"
+                 Text="{Binding SelectedLineUP.From, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                 />
+        <Label Content="tot" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.921,1.154" Margin="10,156,0,0"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="10,187,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"
+                  Text="{Binding SelectedLineUP.Until, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                 />
+        <ComboBox HorizontalAlignment="Left" Margin="10,273,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Bands}" SelectedItem="{Binding SelectedBand, UpdateSourceTrigger=PropertyChanged}" />
+        <ComboBox HorizontalAlignment="Left" Margin="10,346,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Stages}" SelectedItem="{Binding SelectedStage, UpdateSourceTrigger=PropertyChanged}" />
+        <Label Content="Kies een band" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.921,1.154" Margin="10,233,0,0"/>
+        <Label Content="Kies een stage" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.921,1.154" Margin="10,315,0,0"/>
+        <Button Content="New Lineup" HorizontalAlignment="Left" Margin="10,389,0,0" VerticalAlignment="Top" Width="169" Command="{Binding NewLineUPCommand}" />
+        <Button Content="Edit Lineup" HorizontalAlignment="Left" Margin="10,414,0,0" VerticalAlignment="Top" Width="169" Command="{Binding EditLineUPCommand}" />
+        <Button Content="Delete Lineup" HorizontalAlignment="Left" Margin="10,439,0,0" VerticalAlignment="Top" Width="169" Command="{Binding RemoveLineUPCommand}" />
+    </Grid>
 </Window>

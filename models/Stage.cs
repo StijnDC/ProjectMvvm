@@ -6,6 +6,7 @@ using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace ProjectMvvm.models
 {
@@ -86,8 +87,11 @@ namespace ProjectMvvm.models
             DbParameter par1 = Database.AddParameter("@Name", stage._Name);
 
             Database.ModifyData(sSQL, par1);
-        } 
+        }
 
-
+        public override string ToString()
+        {
+            return this.Name;
+        }
     }
 }

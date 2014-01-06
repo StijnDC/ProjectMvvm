@@ -75,8 +75,6 @@ namespace ProjectMvvm.models
                 l.Date = !Convert.IsDBNull((DateTime)reader["Date"]) ? (DateTime)reader["Date"] : today;
                 l.From =!Convert.IsDBNull((string)reader["Van"]) ? (string)reader["Van"] : "";
                 l.Until = !Convert.IsDBNull((string)reader["Until"]) ? (string)reader["Until"] : "";
-               
-
                 l.Stage = GetStageFromLineUp(reader["Stage"].ToString());
                 l.Band = GetBandFromLineUp(reader["Band"].ToString());
 
@@ -100,13 +98,13 @@ namespace ProjectMvvm.models
         //LineUp toevoegen aan database
         public static void AddLineUp(LineUp lu)
         {
-            String sSQL = "INSERT INTO LineUp (Date, [From], Until, StageID, BandID) VALUES (@Date, @From, @Until, @StageID, @BandID)";
+            String sSQL = "INSERT INTO LineUp (Date, Van, Until, Stage, Band) VALUES (@Date, @From, @Until, @StageID, @BandID)";
 
-            DbParameter par1 = Database.AddParameter("@Date", Convert.ToDateTime(lu.Date));
+            DbParameter par1 = Database.AddParameter("@Date", lu.Date);
             DbParameter par2 = Database.AddParameter("@From", lu.From);
             DbParameter par3 = Database.AddParameter("@Until", lu.Until);
-            DbParameter par4 = Database.AddParameter("@StageID", Convert.ToInt32(lu.Stage));
-            DbParameter par5 = Database.AddParameter("@BandID", Convert.ToInt32(lu.Band));
+            DbParameter par4 = Database.AddParameter("@StageID",lu.Stage.ID);
+            DbParameter par5 = Database.AddParameter("@BandID", lu.Band.ID);
 
             Database.ModifyData(sSQL, par1, par2, par3, par4, par5);
         }
@@ -114,8 +112,8 @@ namespace ProjectMvvm.models
         //LineUp aanpassen in database 
         public static void ModifyLineUp(LineUp lu)
         {
-            String sSQL = "UPDATE LineUP SET Date = @Date, [From] = @From, Until = @Until, StageID = @StageID, BandID = @BandID  WHERE LineUpID = @ID";
-
+            String sSQL = "UPDATE LineUP SET Date = @Date,van = @From, Until = @Until, Stage = @StageID, Band = @BandID  WHERE LineUpID = @ID";
+            
             DbParameter par1 = Database.AddParameter("@ID", lu.ID);
             DbParameter par2 = Database.AddParameter("@Date", Convert.ToDateTime(lu._Date));
             DbParameter par3 = Database.AddParameter("@From", lu._From);
@@ -129,7 +127,7 @@ namespace ProjectMvvm.models
         //LineUp verwijderen van database
         public static void DeleteLineUp(LineUp lu)
         {
-            String sSQL = "DELETE FROM LineUp WHERE Date = @Date AND [From] = @From AND Until = @Until";
+            String sSQL = "DELETE FROM LineUp WHERE Date = @Date AND Van = @From AND Until = @Until";
 
             DbParameter par1 = Database.AddParameter("@Date", lu._Date);
             DbParameter par2 = Database.AddParameter("@From", lu._From);

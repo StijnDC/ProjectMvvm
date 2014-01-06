@@ -22,13 +22,20 @@ namespace ProjectMvvm.viewmodel
         public MainPageVM()
         {
             _tickettypes = TicketType.GetTicketTypes();
+            _lineUPs = LineUp.GetLineUp();
+
                    
         }
 
+        //opnieuw inladen datagrid
+        //dit werkt momenteel niet als een window gesloten wordt.
         public void refresh(){
 
             _tickettypes = TicketType.GetTicketTypes();
+            _lineUPs = LineUp.GetLineUp();
         }
+
+        //apparte window open maken.
 
         public ICommand OpenFormCommand
         {
@@ -43,7 +50,7 @@ namespace ProjectMvvm.viewmodel
                     
                 case 1:  
             var Ticketing = new view.Ticketing();
-            refresh();
+            
 
             Ticketing.Show();
           
@@ -51,13 +58,13 @@ namespace ProjectMvvm.viewmodel
 
                 case 2:
                     var Stage = new view.Stage();
-                    refresh();
+                    
             Stage.Show();
             break;
 
                 case 3:
             var Contact = new view.Contact();
-            refresh();
+            
             Contact.Show();
             break;
 
@@ -81,5 +88,21 @@ namespace ProjectMvvm.viewmodel
             }
         }
 
+        private ObservableCollection<LineUp> _lineUPs;
+        public ObservableCollection<LineUp> LP {
+        get {
+            return _lineUPs;
+
+        
+        }
+
+        set {
+            _lineUPs = value;
+            OnPropertyChanged("LP");
+
+        }
     }
+    }
+
+    
 }
